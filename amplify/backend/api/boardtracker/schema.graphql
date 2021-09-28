@@ -1,0 +1,6 @@
+type Board @model {
+  id: ID!
+  brand: String!
+  model: String!
+  description: String
+}
