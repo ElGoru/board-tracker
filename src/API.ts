@@ -79,6 +79,52 @@ export type DeleteBoardInput = {
   id: string,
 };
 
+export type CreateStickerInput = {
+  id?: string | null,
+  size: StickerSize,
+  color: string,
+};
+
+export enum StickerSize {
+  XL = "XL",
+  L = "L",
+  M = "M",
+  S = "S",
+}
+
+
+export type ModelStickerConditionInput = {
+  size?: ModelStickerSizeInput | null,
+  color?: ModelStringInput | null,
+  and?: Array< ModelStickerConditionInput | null > | null,
+  or?: Array< ModelStickerConditionInput | null > | null,
+  not?: ModelStickerConditionInput | null,
+};
+
+export type ModelStickerSizeInput = {
+  eq?: StickerSize | null,
+  ne?: StickerSize | null,
+};
+
+export type Sticker = {
+  __typename: "Sticker",
+  id: string,
+  size: StickerSize,
+  color: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateStickerInput = {
+  id: string,
+  size?: StickerSize | null,
+  color?: string | null,
+};
+
+export type DeleteStickerInput = {
+  id: string,
+};
+
 export type ModelBoardFilterInput = {
   id?: ModelIDInput | null,
   brand?: ModelStringInput | null,
@@ -108,6 +154,21 @@ export type ModelIDInput = {
 export type ModelBoardConnection = {
   __typename: "ModelBoardConnection",
   items?:  Array<Board | null > | null,
+  nextToken?: string | null,
+};
+
+export type ModelStickerFilterInput = {
+  id?: ModelIDInput | null,
+  size?: ModelStickerSizeInput | null,
+  color?: ModelStringInput | null,
+  and?: Array< ModelStickerFilterInput | null > | null,
+  or?: Array< ModelStickerFilterInput | null > | null,
+  not?: ModelStickerFilterInput | null,
+};
+
+export type ModelStickerConnection = {
+  __typename: "ModelStickerConnection",
+  items?:  Array<Sticker | null > | null,
   nextToken?: string | null,
 };
 
@@ -162,6 +223,54 @@ export type DeleteBoardMutation = {
   } | null,
 };
 
+export type CreateStickerMutationVariables = {
+  input: CreateStickerInput,
+  condition?: ModelStickerConditionInput | null,
+};
+
+export type CreateStickerMutation = {
+  createSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateStickerMutationVariables = {
+  input: UpdateStickerInput,
+  condition?: ModelStickerConditionInput | null,
+};
+
+export type UpdateStickerMutation = {
+  updateSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteStickerMutationVariables = {
+  input: DeleteStickerInput,
+  condition?: ModelStickerConditionInput | null,
+};
+
+export type DeleteStickerMutation = {
+  deleteSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetBoardQueryVariables = {
   id: string,
 };
@@ -200,6 +309,42 @@ export type ListBoardsQuery = {
   } | null,
 };
 
+export type GetStickerQueryVariables = {
+  id: string,
+};
+
+export type GetStickerQuery = {
+  getSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListStickersQueryVariables = {
+  filter?: ModelStickerFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListStickersQuery = {
+  listStickers?:  {
+    __typename: "ModelStickerConnection",
+    items?:  Array< {
+      __typename: "Sticker",
+      id: string,
+      size: StickerSize,
+      color: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateBoardSubscription = {
   onCreateBoard?:  {
     __typename: "Board",
@@ -231,6 +376,39 @@ export type OnDeleteBoardSubscription = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateStickerSubscription = {
+  onCreateSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateStickerSubscription = {
+  onUpdateSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteStickerSubscription = {
+  onDeleteSticker?:  {
+    __typename: "Sticker",
+    id: string,
+    size: StickerSize,
+    color: string,
     createdAt: string,
     updatedAt: string,
   } | null,

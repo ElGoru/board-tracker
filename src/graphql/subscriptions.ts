@@ -38,3 +38,36 @@ export const onDeleteBoard = /* GraphQL */ `
     }
   }
 `;
+export const onCreateSticker = /* GraphQL */ `
+  subscription OnCreateSticker {
+    onCreateSticker {
+      id
+      size
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateSticker = /* GraphQL */ `
+  subscription OnUpdateSticker {
+    onUpdateSticker {
+      id
+      size
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteSticker = /* GraphQL */ `
+  subscription OnDeleteSticker {
+    onDeleteSticker {
+      id
+      size
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;

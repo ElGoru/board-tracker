@@ -33,3 +33,32 @@ export const listBoards = /* GraphQL */ `
     }
   }
 `;
+export const getSticker = /* GraphQL */ `
+  query GetSticker($id: ID!) {
+    getSticker(id: $id) {
+      id
+      size
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listStickers = /* GraphQL */ `
+  query ListStickers(
+    $filter: ModelStickerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listStickers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        size
+        color
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

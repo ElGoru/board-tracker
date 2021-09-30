@@ -1,6 +1,19 @@
 type Board @model {
-  id: ID!
-  brand: String!
-  model: String!
-  description: String
+    id: ID!
+    brand: String!
+    model: String!
+    description: String
+}
+
+type Sticker @model {
+    id: ID!
+    size: StickerSize!
+    color: String!
+}
+
+enum StickerSize {
+    XL
+    L
+    M
+    S
 }
