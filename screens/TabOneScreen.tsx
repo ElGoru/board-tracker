@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import BoardForm from '../components/BoardForm';
 import BoardsList from '../components/BoardsList';
 
+import { FAB } from 'react-native-paper';
+
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
@@ -13,34 +15,31 @@ export default function TabOneScreen({
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tab One</Text>
-            <View
-                style={styles.separator}
-                lightColor="#eee"
-                darkColor="rgba(255,255,255,0.1)"
-            />
             <BoardForm setIsBoardListUpdated={setIsBoardListUpdated} />
             <BoardsList
                 isUpdated={isBoardListUpdated}
                 setIsUpdated={setIsBoardListUpdated}
             />
+            <FAB
+                style={styles.fab}
+                icon="plus"
+                onPress={() => console.log('Pressed')}
+            />
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+        padding: 10,
+        backgroundColor: '#789',
     },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
     },
 });

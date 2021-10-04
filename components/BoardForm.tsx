@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, TextInput } from 'react-native';
+
+import { TextInput, Button } from 'react-native-paper';
 
 import { Text, View } from '../components/Themed';
 
@@ -46,18 +47,24 @@ export default function BoardForm(props: {
                 onChangeText={val => setInput('brand', val)}
                 value={formState.brand}
                 placeholder="Brand"
+                mode="outlined"
+                multiline={false}
             />
             <TextInput
                 onChangeText={val => setInput('model', val)}
                 value={formState.model}
                 placeholder="Model"
+                mode="outlined"
+                multiline={false}
             />
             <TextInput
                 onChangeText={val => setInput('description', val)}
                 value={formState.description ?? undefined}
                 placeholder="Description"
+                mode="outlined"
+                multiline={true}
             />
-            <Button title="Register Board" onPress={addBoard} />
+            <Button onPress={addBoard}>Register Board</Button>
         </View>
     );
 }

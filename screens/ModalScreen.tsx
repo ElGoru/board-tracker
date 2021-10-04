@@ -24,7 +24,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: 'pink',
+        paddingTop: 10,
     },
     title: {
         fontSize: 20,

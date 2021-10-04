@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button, ToggleButton } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { createSticker } from '../src/graphql/mutations';
@@ -16,6 +17,8 @@ export default function StickerForm() {
     const [sticker, setSticker] = React.useState<Sticker>();
     const [formState, setFormState] = React.useState(formInitialState);
 
+    const theme = useTheme();
+
     async function addSticker() {
         try {
             const sticker = { ...formState };
@@ -30,7 +33,7 @@ export default function StickerForm() {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <ToggleButton.Row
                 onValueChange={value =>
                     setFormState({
@@ -41,8 +44,42 @@ export default function StickerForm() {
                 }
                 value={formState.size}
             >
-                <ToggleButton icon="format-align-left" value={StickerSize.S} />
-                <ToggleButton icon="format-align-right" value={StickerSize.M} />
+                <ToggleButton
+                    icon="qrcode"
+                    size={20}
+                    value={StickerSize.S}
+                    style={styles.qrToggleButton}
+                    color={
+                        theme.dark ? theme.colors.primary : theme.colors.text
+                    }
+                />
+                <ToggleButton
+                    icon="qrcode"
+                    size={30}
+                    value={StickerSize.M}
+                    style={styles.qrToggleButton}
+                    color={
+                        theme.dark ? theme.colors.primary : theme.colors.text
+                    }
+                />
+                <ToggleButton
+                    icon="qrcode"
+                    size={40}
+                    value={StickerSize.L}
+                    style={styles.qrToggleButton}
+                    color={
+                        theme.dark ? theme.colors.primary : theme.colors.text
+                    }
+                />
+                <ToggleButton
+                    icon="qrcode"
+                    size={50}
+                    value={StickerSize.XL}
+                    style={styles.qrToggleButton}
+                    color={
+                        theme.dark ? theme.colors.primary : theme.colors.text
+                    }
+                />
             </ToggleButton.Row>
 
             <TextInput
@@ -51,9 +88,16 @@ export default function StickerForm() {
                 }
                 value={formState.color}
                 placeholder="Color"
+                mode="outlined"
+                multiline={false}
+                style={styles.colorInput}
             />
 
-            <Button icon="qrcode" onPress={() => addSticker()}>
+            <Button
+                icon="qrcode"
+                onPress={() => addSticker()}
+                style={styles.generateButton}
+            >
                 Generate QR sticker
             </Button>
 
@@ -61,5 +105,25 @@ export default function StickerForm() {
         </View>
     );
 }
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    qrToggleButton: {
+        height: 60,
+        width: 60,
+        backgroundColor: '#789',
+    },
+    colorInput: {
+        width: 240,
+        marginVertical: 10,
+        backgroundColor: '#987',
+    },
+    generateButton: {
+        marginBottom: 10,
+        backgroundColor: '#345',
+    },
+});

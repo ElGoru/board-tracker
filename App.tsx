@@ -11,18 +11,31 @@ import config from './src/aws-exports';
 Amplify.configure(config);
 import 'react-native-url-polyfill/auto';
 
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
 export default function App() {
     const isLoadingComplete = useCachedResources();
-    const colorScheme = useColorScheme();
+    const theme = {
+        ...DefaultTheme,
+        roundness: 2,
+        colors: {
+            ...DefaultTheme.colors,
+            primary: 'tomato',
+            accent: 'yellow',
+        },
+    };
+    theme.dark = useColorScheme() == 'dark';
 
     if (!isLoadingComplete) {
         return null;
     } else {
         return (
-            <SafeAreaProvider>
-                <Navigation colorScheme={colorScheme} />
-                <StatusBar />
-            </SafeAreaProvider>
+            <PaperProvider theme={theme}>
+                <SafeAreaProvider>
+                    <Navigation />
+                    <StatusBar />
+                </SafeAreaProvider>
+            </PaperProvider>
         );
     }
 }

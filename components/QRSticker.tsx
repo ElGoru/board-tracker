@@ -7,27 +7,22 @@ export default function QRSticker(props: { sticker: Sticker }) {
     let url = `http://example.com?stickerId=${props.sticker.id}`;
     return (
         <View style={styles.container}>
-            <Text>Id: {props.sticker.id}</Text>
-            <SvgQRCode value={url} />
+            <Text style={styles.title}>
+                Size: {props.sticker.size} Color: {props.sticker.color}
+            </Text>
+            <SvgQRCode value={url} size={200} />
         </View>
     );
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
-        height: 1000,
-        padding: 300,
+        padding: 20,
+        backgroundColor: '#fff',
+        borderRadius: 10,
     },
     title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
+        marginBottom: 10,
     },
 });
