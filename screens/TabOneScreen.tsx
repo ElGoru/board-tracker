@@ -15,15 +15,14 @@ export default function TabOneScreen({
 
     return (
         <View style={styles.container}>
-            <BoardForm setIsBoardListUpdated={setIsBoardListUpdated} />
             <BoardsList
                 isUpdated={isBoardListUpdated}
                 setIsUpdated={setIsBoardListUpdated}
             />
             <FAB
                 style={styles.fab}
-                icon="plus"
-                onPress={() => console.log('Pressed')}
+                icon="qrcode"
+                onPress={() => navigation.navigate('RegisterBoardScreen')}
             />
         </View>
     );

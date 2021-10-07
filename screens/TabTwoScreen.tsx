@@ -1,19 +1,11 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Text, View } from '../components/Themed';
-
-import { withAuthenticator } from 'aws-amplify-react-native';
-import QRScanner from '../components/QRScanner';
+import { View } from '../components/Themed';
 
 export default function TabTwoScreen() {
-    return (
-        <View style={styles.container}>
-            <QRScanner />
-        </View>
-    );
+    return <View style={styles.container}></View>;
 }
-//export default withAuthenticator(TabTwoScreen);
 
 const styles = StyleSheet.create({
     container: {

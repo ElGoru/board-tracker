@@ -9,6 +9,16 @@ export const getBoard = /* GraphQL */ `
       brand
       model
       description
+      stickers {
+        items {
+          id
+          size
+          color
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -26,6 +36,9 @@ export const listBoards = /* GraphQL */ `
         brand
         model
         description
+        stickers {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -39,6 +52,17 @@ export const getSticker = /* GraphQL */ `
       id
       size
       color
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -55,6 +79,14 @@ export const listStickers = /* GraphQL */ `
         id
         size
         color
+        board {
+          id
+          brand
+          model
+          description
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }

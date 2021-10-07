@@ -3,12 +3,14 @@ type Board @model {
     brand: String!
     model: String!
     description: String
+    stickers: [Sticker] @connection(name: "BoardStickers")
 }
 
 type Sticker @model {
     id: ID!
     size: StickerSize!
     color: String!
+    board: Board @connection(name: "BoardStickers")
 }
 
 enum StickerSize {

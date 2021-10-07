@@ -5,40 +5,37 @@ import { TextInput, Button } from 'react-native-paper';
 import { Text, View } from '../components/Themed';
 
 import { API, graphqlOperation } from 'aws-amplify';
+import { GraphQLResult } from '@aws-amplify/api';
 import { createBoard } from '../src/graphql/mutations';
-import { Board, CreateBoardInput } from '../src/API';
-import { Dispatch, SetStateAction } from 'react';
+import { Board, CreateBoardInput, CreateBoardMutation } from '../src/API';
 
-const formInitialState: CreateBoardInput = {
-    brand: '',
-    model: '',
-    description: '',
-};
 export default function BoardForm(props: {
-    setIsBoardListUpdated: Dispatch<SetStateAction<boolean>>;
+    callback: (createBoardInput: CreateBoardInput) => Promise<boolean>;
 }) {
+    const formInitialState: CreateBoardInput = {
+        brand: '',
+        model: '',
+        description: '',
+    };
     const [formState, setFormState] = React.useState(formInitialState);
 
     function setInput(key: any, value: any) {
         setFormState({ ...formState, [key]: value });
     }
 
-    async function addBoard() {
-        try {
-            const board = { ...formState };
-            setFormState(formInitialState);
-            validateInputs();
-            await API.graphql(graphqlOperation(createBoard, { input: board }));
-            props.setIsBoardListUpdated(false);
-        } catch (err) {
-            console.log('error creating board:', err);
-        }
+    function addBoard() {
+        var isValid = validateInputs();
+        if (!isValid) return;
+        const board = { ...formState };
+        setFormState(formInitialState);
+        props.callback(board);
     }
 
     const validateInputs = () => {
         if (formState.brand == '' || formState.model == '') {
-            throw Error('fields required');
+            return false;
         }
+        return true;
     };
 
     return (

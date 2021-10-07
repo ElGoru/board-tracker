@@ -29,6 +29,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
+import RegisterBoardScreen from '../screens/RegisterBoardScreen';
 
 export default function Navigation() {
     const paperTheme = useTheme();
@@ -60,6 +61,11 @@ function RootNavigator() {
                 name="NotFound"
                 component={NotFoundScreen}
                 options={{ title: 'Oops!' }}
+            />
+            <Stack.Screen
+                name="RegisterBoardScreen"
+                component={RegisterBoardScreen}
+                options={{ title: 'RegisterBoardScreen' }}
             />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="Modal" component={ModalScreen} />

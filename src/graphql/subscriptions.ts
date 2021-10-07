@@ -9,6 +9,16 @@ export const onCreateBoard = /* GraphQL */ `
       brand
       model
       description
+      stickers {
+        items {
+          id
+          size
+          color
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -21,6 +31,16 @@ export const onUpdateBoard = /* GraphQL */ `
       brand
       model
       description
+      stickers {
+        items {
+          id
+          size
+          color
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -33,6 +53,16 @@ export const onDeleteBoard = /* GraphQL */ `
       brand
       model
       description
+      stickers {
+        items {
+          id
+          size
+          color
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -44,6 +74,17 @@ export const onCreateSticker = /* GraphQL */ `
       id
       size
       color
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -55,6 +96,17 @@ export const onUpdateSticker = /* GraphQL */ `
       id
       size
       color
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -66,6 +118,17 @@ export const onDeleteSticker = /* GraphQL */ `
       id
       size
       color
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

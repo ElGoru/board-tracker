@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
 
-export default function QRScanner() {
+export default function QRScanner(props: {
+    callback: (data: string) => Promise<boolean>;
+}) {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
     const [scanned, setScanned] = useState(false);
 
@@ -13,17 +15,15 @@ export default function QRScanner() {
         })();
     }, []);
 
-    const handleBarCodeScanned = ({ type, data }: BarCodeScannerResult) => {
+    const handleBarCodeScanned = async ({
+        type,
+        data,
+    }: BarCodeScannerResult) => {
+        console.log(`qr scanner ${type}`);
+        if (type != '256') return;
+        alert(`Bar code with type ${type}, data ${data} has been scanned!`);
         setScanned(true);
-        var stickerId = extractStickerId(data);
-        alert(
-            `Bar code with type ${type}, data ${data} has been scanned!${stickerId}`,
-        );
-    };
-
-    const extractStickerId = (data: string) => {
-        const url = new URL(data);
-        return url.searchParams.get('stickerId');
+        props.callback(data);
     };
 
     if (hasPermission === null) {
