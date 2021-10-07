@@ -8,29 +8,7 @@ import { listBoards } from '../src/graphql/queries';
 import { Board } from '../src/API';
 import { Dispatch, SetStateAction } from 'react';
 
-export default function BoardsList(props: {
-    isUpdated: boolean;
-    setIsUpdated: Dispatch<SetStateAction<boolean>>;
-}) {
-    const [boards, setBoards] = React.useState<Board[]>([]);
-
-    React.useEffect(() => {
-        fetchBoards();
-        props.setIsUpdated(true);
-    }, [props.isUpdated]);
-
-    async function fetchBoards() {
-        try {
-            const boardData: any = await API.graphql(
-                graphqlOperation(listBoards),
-            );
-            const boards = boardData.data.listBoards.items;
-            setBoards(boards);
-        } catch (err) {
-            console.log('error fetching boards');
-        }
-    }
-
+export default function BoardsList(props: { boards: Board[] }) {
     const renderBoard: ListRenderItem<Board> = ({ item }) => (
         <View key={item.id}>
             <Text>{item.brand}</Text>
@@ -40,7 +18,7 @@ export default function BoardsList(props: {
 
     return (
         <FlatList
-            data={boards}
+            data={props.boards}
             renderItem={renderBoard}
             keyExtractor={item => item.id}
         />

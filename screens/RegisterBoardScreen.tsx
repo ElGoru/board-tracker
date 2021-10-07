@@ -57,12 +57,15 @@ export default function RegisterBoardScreen({
                 id: sticker.id,
                 stickerBoardId: boardId,
             };
-            const response = (await API.graphql(
+            const response = await (API.graphql(
                 graphqlOperation(updateSticker, {
                     input: updateStickerInput,
                 }),
-            )) as Promise<GraphQLResult<UpdateStickerMutation>>;
-            navigation.navigate('Root');
+            ) as Promise<GraphQLResult<UpdateStickerMutation>>);
+            navigation.navigate('Root', {
+                screen: 'Home',
+                params: { reload: true },
+            });
             console.log(response);
             return true;
         } catch (err) {
