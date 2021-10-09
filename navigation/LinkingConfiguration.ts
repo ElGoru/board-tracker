@@ -13,6 +13,9 @@ const linking: LinkingOptions<RootStackParamList> = {
     prefixes: [Linking.makeUrl('/')],
     config: {
         screens: {
+            Index: {
+                path: ':stickerId?',
+            },
             Root: {
                 screens: {
                     Home: 'HomeScreen',

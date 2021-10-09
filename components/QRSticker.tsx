@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Sticker } from '../src/API';
 import SvgQRCode from 'react-native-qrcode-svg';
+import * as Linking from 'expo-linking';
 
 export default function QRSticker(props: { sticker: Sticker }) {
-    let url = `http://example.com?stickerId=${props.sticker.id}`;
+    let url = Linking.makeUrl(`/${props.sticker.id}`);
     return (
         <View style={styles.container}>
             <Text style={styles.title}>

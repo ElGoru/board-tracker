@@ -8,7 +8,13 @@ import Navigation from './navigation';
 
 import Amplify from 'aws-amplify';
 import config from './src/aws-exports';
-Amplify.configure(config);
+Amplify.configure({
+    ...config,
+    Analytics: {
+        disabled: true,
+    },
+});
+
 import 'react-native-url-polyfill/auto';
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';

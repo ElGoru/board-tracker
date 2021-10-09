@@ -30,6 +30,8 @@ import LinkingConfiguration from './LinkingConfiguration';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 import RegisterBoardScreen from '../screens/RegisterBoardScreen';
+import IndexScreen from '../screens/IndexScreen';
+import { withAuthenticator } from 'aws-amplify-react-native';
 
 export default function Navigation() {
     const paperTheme = useTheme();
@@ -51,16 +53,17 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Root">
+            <Stack.Screen
+                name="Index"
+                component={IndexScreen}
+                options={{ title: 'Index!' }}
+            />
+
             <Stack.Screen
                 name="Root"
-                component={BottomTabNavigator}
+                component={withAuthenticator(BottomTabNavigator)}
                 options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="NotFound"
-                component={NotFoundScreen}
-                options={{ title: 'Oops!' }}
             />
             <Stack.Screen
                 name="RegisterBoardScreen"
@@ -70,6 +73,12 @@ function RootNavigator() {
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="Modal" component={ModalScreen} />
             </Stack.Group>
+
+            <Stack.Screen
+                name="NotFound"
+                component={NotFoundScreen}
+                options={{ title: 'Oops!' }}
+            />
         </Stack.Navigator>
     );
 }

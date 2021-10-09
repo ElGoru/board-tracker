@@ -17,6 +17,7 @@ declare global {
 }
 
 export type RootStackParamList = {
+    Index: { stickerId: string } | undefined;
     Root: NavigatorScreenParams<RootTabParamList> | undefined;
     Modal: undefined;
     NotFound: undefined;

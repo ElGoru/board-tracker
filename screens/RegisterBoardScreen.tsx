@@ -23,9 +23,12 @@ export default function RegisterBoardScreen({
 }: RootStackScreenProps<'RegisterBoardScreen'>) {
     const [sticker, setSticker] = React.useState<Sticker>();
 
+    //Refactor to useCallback
     const qrScannerCallback = async (data: string) => {
         const url = new URL(data);
-        const stickerId = url.searchParams.get('stickerId');
+        //Find a better way
+        const stickerId = url.pathname.replace('/', '');
+        console.log(`stickerId ${stickerId}`);
         if (!stickerId) return false;
         try {
             const response = await (API.graphql(
@@ -37,12 +40,11 @@ export default function RegisterBoardScreen({
             return true;
         } catch (err) {
             console.log(err);
-            throw new Error(err);
-
-            return false;
+            throw err;
         }
     };
 
+    //Refactor to useCallback
     const boardFormCallback = async (createBoardInput: CreateBoardInput) => {
         console.log('boardFormCallback');
         try {
