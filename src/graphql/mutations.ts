@@ -12,6 +12,9 @@ export const createBoard = /* GraphQL */ `
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -19,11 +22,10 @@ export const createBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -37,6 +39,9 @@ export const updateBoard = /* GraphQL */ `
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -44,11 +49,10 @@ export const updateBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -62,6 +66,9 @@ export const deleteBoard = /* GraphQL */ `
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -69,11 +76,10 @@ export const deleteBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -86,19 +92,21 @@ export const createSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
@@ -111,19 +119,21 @@ export const updateSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
@@ -136,19 +146,21 @@ export const deleteSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;

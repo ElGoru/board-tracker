@@ -64,9 +64,10 @@ export type Board = {
   brand: string,
   model: string,
   description?: string | null,
-  stickers?: ModelStickerConnection | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
+  stickers?: ModelStickerConnection | null,
 };
 
 export type ModelStickerConnection = {
@@ -80,9 +81,10 @@ export type Sticker = {
   id: string,
   size: StickerSize,
   color: string,
-  board?: Board | null,
   createdAt: string,
   updatedAt: string,
+  board?: Board | null,
+  owner?: string | null,
 };
 
 export enum StickerSize {
@@ -188,6 +190,9 @@ export type CreateBoardMutation = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -197,11 +202,10 @@ export type CreateBoardMutation = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -217,6 +221,9 @@ export type UpdateBoardMutation = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -226,11 +233,10 @@ export type UpdateBoardMutation = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -246,6 +252,9 @@ export type DeleteBoardMutation = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -255,11 +264,10 @@ export type DeleteBoardMutation = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -274,21 +282,23 @@ export type CreateStickerMutation = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -303,21 +313,23 @@ export type UpdateStickerMutation = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -332,21 +344,23 @@ export type DeleteStickerMutation = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -361,6 +375,9 @@ export type GetBoardQuery = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -370,11 +387,10 @@ export type GetBoardQuery = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -393,12 +409,13 @@ export type ListBoardsQuery = {
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -414,21 +431,23 @@ export type GetStickerQuery = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -446,6 +465,8 @@ export type ListStickersQuery = {
       id: string,
       size: StickerSize,
       color: string,
+      createdAt: string,
+      updatedAt: string,
       board?:  {
         __typename: "Board",
         id: string,
@@ -454,12 +475,16 @@ export type ListStickersQuery = {
         description?: string | null,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
+};
+
+export type OnCreateBoardSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnCreateBoardSubscription = {
@@ -469,6 +494,9 @@ export type OnCreateBoardSubscription = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -478,12 +506,15 @@ export type OnCreateBoardSubscription = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
+};
+
+export type OnUpdateBoardSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnUpdateBoardSubscription = {
@@ -493,6 +524,9 @@ export type OnUpdateBoardSubscription = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -502,12 +536,15 @@ export type OnUpdateBoardSubscription = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
+};
+
+export type OnDeleteBoardSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnDeleteBoardSubscription = {
@@ -517,6 +554,9 @@ export type OnDeleteBoardSubscription = {
     brand: string,
     model: string,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
       items?:  Array< {
@@ -526,11 +566,10 @@ export type OnDeleteBoardSubscription = {
         color: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -540,21 +579,23 @@ export type OnCreateStickerSubscription = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -564,21 +605,23 @@ export type OnUpdateStickerSubscription = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -588,20 +631,22 @@ export type OnDeleteStickerSubscription = {
     id: string,
     size: StickerSize,
     color: string,
+    createdAt: string,
+    updatedAt: string,
     board?:  {
       __typename: "Board",
       id: string,
       brand: string,
       model: string,
       description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null,
-    createdAt: string,
-    updatedAt: string,
+    owner?: string | null,
   } | null,
 };

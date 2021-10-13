@@ -9,6 +9,9 @@ export const getBoard = /* GraphQL */ `
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -16,11 +19,10 @@ export const getBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -36,11 +38,12 @@ export const listBoards = /* GraphQL */ `
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -52,19 +55,21 @@ export const getSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
@@ -79,6 +84,8 @@ export const listStickers = /* GraphQL */ `
         id
         size
         color
+        createdAt
+        updatedAt
         board {
           id
           brand
@@ -86,9 +93,9 @@ export const listStickers = /* GraphQL */ `
           description
           createdAt
           updatedAt
+          owner
         }
-        createdAt
-        updatedAt
+        owner
       }
       nextToken
     }

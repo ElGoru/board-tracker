@@ -11,6 +11,7 @@ export default function QRSticker(props: { sticker: Sticker }) {
             <Text style={styles.title}>
                 Size: {props.sticker.size} Color: {props.sticker.color}
             </Text>
+            <Text>Url: {url}</Text>
             <SvgQRCode value={url} size={200} />
         </View>
     );

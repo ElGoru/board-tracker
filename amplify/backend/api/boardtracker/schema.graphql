@@ -1,4 +1,6 @@
-type Board @model {
+type Board
+    @model
+    @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
     id: ID!
     brand: String!
     model: String!
@@ -6,7 +8,16 @@ type Board @model {
     stickers: [Sticker] @connection(name: "BoardStickers")
 }
 
-type Sticker @model {
+#Create admin group with create operations
+type Sticker
+    @model
+    @auth(
+        rules: [
+            { allow: owner }
+            { allow: public, operations: [read] }
+            { allow: private, operations: [read, update] }
+        ]
+    ) {
     id: ID!
     size: StickerSize!
     color: String!

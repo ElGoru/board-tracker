@@ -3,12 +3,15 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateBoard = /* GraphQL */ `
-  subscription OnCreateBoard {
-    onCreateBoard {
+  subscription OnCreateBoard($owner: String) {
+    onCreateBoard(owner: $owner) {
       id
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -16,21 +19,23 @@ export const onCreateBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateBoard = /* GraphQL */ `
-  subscription OnUpdateBoard {
-    onUpdateBoard {
+  subscription OnUpdateBoard($owner: String) {
+    onUpdateBoard(owner: $owner) {
       id
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -38,21 +43,23 @@ export const onUpdateBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteBoard = /* GraphQL */ `
-  subscription OnDeleteBoard {
-    onDeleteBoard {
+  subscription OnDeleteBoard($owner: String) {
+    onDeleteBoard(owner: $owner) {
       id
       brand
       model
       description
+      createdAt
+      updatedAt
+      owner
       stickers {
         items {
           id
@@ -60,11 +67,10 @@ export const onDeleteBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -74,19 +80,21 @@ export const onCreateSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
@@ -96,19 +104,21 @@ export const onUpdateSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
@@ -118,19 +128,21 @@ export const onDeleteSticker = /* GraphQL */ `
       id
       size
       color
+      createdAt
+      updatedAt
       board {
         id
         brand
         model
         description
+        createdAt
+        updatedAt
+        owner
         stickers {
           nextToken
         }
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
+      owner
     }
   }
 `;
