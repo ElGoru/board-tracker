@@ -32,6 +32,7 @@ import { useTheme } from 'react-native-paper';
 import RegisterBoardScreen from '../screens/RegisterBoardScreen';
 import IndexScreen from '../screens/IndexScreen';
 import { withAuthenticator } from 'aws-amplify-react-native';
+import { Platform } from 'react-native';
 
 export default function Navigation() {
     const paperTheme = useTheme();
@@ -53,13 +54,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
     return (
-        <Stack.Navigator initialRouteName="Root">
+        <Stack.Navigator
+            initialRouteName={Platform.OS === 'web' ? 'Index' : 'Root'}
+        >
             <Stack.Screen
                 name="Index"
                 component={IndexScreen}
                 options={{ title: 'Index!' }}
             />
-
             <Stack.Screen
                 name="Root"
                 component={withAuthenticator(BottomTabNavigator)}
@@ -73,7 +75,6 @@ function RootNavigator() {
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="Modal" component={ModalScreen} />
             </Stack.Group>
-
             <Stack.Screen
                 name="NotFound"
                 component={NotFoundScreen}

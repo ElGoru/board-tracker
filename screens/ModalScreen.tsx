@@ -10,7 +10,7 @@ import Auth from '@aws-amplify/auth';
 export default function ModalScreen() {
     const signOut = async () => {
         try {
-            let response = await Auth.signOut({ global: true });
+            let response = await Auth.signOut();
             console.log(response);
         } catch (error) {
             console.log('error signing out: ', error);
