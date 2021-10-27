@@ -28,13 +28,11 @@ export default function RegisterBoardScreen({
         const url = new URL(data);
         //Find a better way
         const stickerId = url.pathname.replace('/', '');
-        console.log(`stickerId ${stickerId}`);
         if (!stickerId) return false;
         try {
             const response = await (API.graphql(
                 graphqlOperation(getSticker, { id: stickerId }),
             ) as Promise<GraphQLResult<GetStickerQuery>>);
-            console.log(response);
             if (response.data?.getSticker?.board) return false;
             setSticker(response.data?.getSticker || undefined);
             return true;
@@ -46,7 +44,6 @@ export default function RegisterBoardScreen({
 
     //Refactor to useCallback
     const boardFormCallback = async (createBoardInput: CreateBoardInput) => {
-        console.log('boardFormCallback');
         try {
             if (!sticker) throw new Error('sticker is undefined');
 
@@ -68,7 +65,6 @@ export default function RegisterBoardScreen({
                 screen: 'Home',
                 params: { reload: true },
             });
-            console.log(response);
             return true;
         } catch (err) {
             console.log(err);

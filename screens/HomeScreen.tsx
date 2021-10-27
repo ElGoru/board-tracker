@@ -10,6 +10,7 @@ import { Board, ListBoardsQuery } from '../src/API';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listBoards } from '../src/graphql/queries';
 import { GraphQLResult } from '@aws-amplify/api';
+import { notEmpty } from '../src/utils';
 
 export default function HomeScreen({
     route,
@@ -34,11 +35,6 @@ export default function HomeScreen({
                 graphqlOperation(listBoards),
             ) as Promise<GraphQLResult<ListBoardsQuery>>);
             const boards = response.data?.listBoards?.items ?? [];
-            function notEmpty<TValue>(
-                value: TValue | null | undefined,
-            ): value is TValue {
-                return value !== null && value !== undefined;
-            }
             const filteredBoards = boards.filter(notEmpty);
             setBoards(filteredBoards);
         } catch (err) {

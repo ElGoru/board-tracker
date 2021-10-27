@@ -23,6 +23,17 @@ export const onCreateBoard = /* GraphQL */ `
         }
         nextToken
       }
+      locations {
+        items {
+          id
+          Latitude
+          Longitude
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -41,6 +52,17 @@ export const onUpdateBoard = /* GraphQL */ `
           id
           size
           color
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      locations {
+        items {
+          id
+          Latitude
+          Longitude
           createdAt
           updatedAt
           owner
@@ -71,6 +93,17 @@ export const onDeleteBoard = /* GraphQL */ `
         }
         nextToken
       }
+      locations {
+        items {
+          id
+          Latitude
+          Longitude
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -91,6 +124,9 @@ export const onCreateSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          nextToken
+        }
+        locations {
           nextToken
         }
       }
@@ -117,6 +153,9 @@ export const onUpdateSticker = /* GraphQL */ `
         stickers {
           nextToken
         }
+        locations {
+          nextToken
+        }
       }
       owner
     }
@@ -139,6 +178,90 @@ export const onDeleteSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          nextToken
+        }
+        locations {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onCreateLocation = /* GraphQL */ `
+  subscription OnCreateLocation {
+    onCreateLocation {
+      id
+      Latitude
+      Longitude
+      createdAt
+      updatedAt
+      board {
+        id
+        brand
+        model
+        description
+        createdAt
+        updatedAt
+        owner
+        stickers {
+          nextToken
+        }
+        locations {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateLocation = /* GraphQL */ `
+  subscription OnUpdateLocation {
+    onUpdateLocation {
+      id
+      Latitude
+      Longitude
+      createdAt
+      updatedAt
+      board {
+        id
+        brand
+        model
+        description
+        createdAt
+        updatedAt
+        owner
+        stickers {
+          nextToken
+        }
+        locations {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteLocation = /* GraphQL */ `
+  subscription OnDeleteLocation {
+    onDeleteLocation {
+      id
+      Latitude
+      Longitude
+      createdAt
+      updatedAt
+      board {
+        id
+        brand
+        model
+        description
+        createdAt
+        updatedAt
+        owner
+        stickers {
+          nextToken
+        }
+        locations {
           nextToken
         }
       }

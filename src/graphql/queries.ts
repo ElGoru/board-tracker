@@ -23,6 +23,17 @@ export const getBoard = /* GraphQL */ `
         }
         nextToken
       }
+      locations {
+        items {
+          id
+          Latitude
+          Longitude
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -42,6 +53,9 @@ export const listBoards = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          nextToken
+        }
+        locations {
           nextToken
         }
       }
@@ -68,6 +82,9 @@ export const getSticker = /* GraphQL */ `
         stickers {
           nextToken
         }
+        locations {
+          nextToken
+        }
       }
       owner
     }
@@ -84,6 +101,61 @@ export const listStickers = /* GraphQL */ `
         id
         size
         color
+        createdAt
+        updatedAt
+        board {
+          id
+          brand
+          model
+          description
+          createdAt
+          updatedAt
+          owner
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getLocation = /* GraphQL */ `
+  query GetLocation($id: ID!) {
+    getLocation(id: $id) {
+      id
+      Latitude
+      Longitude
+      createdAt
+      updatedAt
+      board {
+        id
+        brand
+        model
+        description
+        createdAt
+        updatedAt
+        owner
+        stickers {
+          nextToken
+        }
+        locations {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const listLocations = /* GraphQL */ `
+  query ListLocations(
+    $filter: ModelLocationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Latitude
+        Longitude
         createdAt
         updatedAt
         board {

@@ -68,6 +68,7 @@ export type Board = {
   updatedAt: string,
   owner?: string | null,
   stickers?: ModelStickerConnection | null,
+  locations?: ModelLocationConnection | null,
 };
 
 export type ModelStickerConnection = {
@@ -94,6 +95,23 @@ export enum StickerSize {
   S = "S",
 }
 
+
+export type ModelLocationConnection = {
+  __typename: "ModelLocationConnection",
+  items?:  Array<Location | null > | null,
+  nextToken?: string | null,
+};
+
+export type Location = {
+  __typename: "Location",
+  id: string,
+  Latitude: number,
+  Longitude: number,
+  createdAt: string,
+  updatedAt: string,
+  board: Board,
+  owner?: string | null,
+};
 
 export type UpdateBoardInput = {
   id: string,
@@ -137,6 +155,43 @@ export type DeleteStickerInput = {
   id: string,
 };
 
+export type UpdateLocationInput = {
+  Latitude?: number | null,
+  Longitude?: number | null,
+  locationBoardId?: string | null,
+};
+
+export type ModelLocationConditionInput = {
+  Latitude?: ModelFloatInput | null,
+  Longitude?: ModelFloatInput | null,
+  and?: Array< ModelLocationConditionInput | null > | null,
+  or?: Array< ModelLocationConditionInput | null > | null,
+  not?: ModelLocationConditionInput | null,
+};
+
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type DeleteLocationInput = {
+  id: string,
+};
+
+export type CreateLocationInput = {
+  id?: string | null,
+  Latitude: number,
+  Longitude: number,
+  locationBoardId: string,
+};
+
 export type ModelBoardFilterInput = {
   id?: ModelIDInput | null,
   brand?: ModelStringInput | null,
@@ -178,6 +233,14 @@ export type ModelStickerFilterInput = {
   not?: ModelStickerFilterInput | null,
 };
 
+export type ModelLocationFilterInput = {
+  Latitude?: ModelFloatInput | null,
+  Longitude?: ModelFloatInput | null,
+  and?: Array< ModelLocationFilterInput | null > | null,
+  or?: Array< ModelLocationFilterInput | null > | null,
+  not?: ModelLocationFilterInput | null,
+};
+
 export type CreateBoardMutationVariables = {
   input: CreateBoardInput,
   condition?: ModelBoardConditionInput | null,
@@ -200,6 +263,19 @@ export type CreateBoardMutation = {
         id: string,
         size: StickerSize,
         color: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
         createdAt: string,
         updatedAt: string,
         owner?: string | null,
@@ -237,6 +313,19 @@ export type UpdateBoardMutation = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -262,6 +351,19 @@ export type DeleteBoardMutation = {
         id: string,
         size: StickerSize,
         color: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
         createdAt: string,
         updatedAt: string,
         owner?: string | null,
@@ -297,6 +399,10 @@ export type CreateStickerMutation = {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
     owner?: string | null,
   } | null,
@@ -326,6 +432,10 @@ export type UpdateStickerMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
         nextToken?: string | null,
       } | null,
     } | null,
@@ -359,7 +469,116 @@ export type DeleteStickerMutation = {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateLocationMutationVariables = {
+  input: UpdateLocationInput,
+  condition?: ModelLocationConditionInput | null,
+};
+
+export type UpdateLocationMutation = {
+  updateLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteLocationMutationVariables = {
+  input: DeleteLocationInput,
+  condition?: ModelLocationConditionInput | null,
+};
+
+export type DeleteLocationMutation = {
+  deleteLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateLocationMutationVariables = {
+  input: CreateLocationInput,
+  condition?: ModelLocationConditionInput | null,
+};
+
+export type CreateLocationMutation = {
+  createLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
     owner?: string | null,
   } | null,
 };
@@ -391,6 +610,19 @@ export type GetBoardQuery = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -414,6 +646,10 @@ export type ListBoardsQuery = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
         nextToken?: string | null,
       } | null,
     } | null > | null,
@@ -444,6 +680,10 @@ export type GetStickerQuery = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
         nextToken?: string | null,
       } | null,
     } | null,
@@ -483,6 +723,72 @@ export type ListStickersQuery = {
   } | null,
 };
 
+export type GetLocationQueryVariables = {
+  id: string,
+};
+
+export type GetLocationQuery = {
+  getLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
+    owner?: string | null,
+  } | null,
+};
+
+export type ListLocationsQueryVariables = {
+  filter?: ModelLocationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListLocationsQuery = {
+  listLocations?:  {
+    __typename: "ModelLocationConnection",
+    items?:  Array< {
+      __typename: "Location",
+      id: string,
+      Latitude: number,
+      Longitude: number,
+      createdAt: string,
+      updatedAt: string,
+      board:  {
+        __typename: "Board",
+        id: string,
+        brand: string,
+        model: string,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      },
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateBoardSubscriptionVariables = {
   owner?: string | null,
 };
@@ -504,6 +810,19 @@ export type OnCreateBoardSubscription = {
         id: string,
         size: StickerSize,
         color: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
         createdAt: string,
         updatedAt: string,
         owner?: string | null,
@@ -540,6 +859,19 @@ export type OnUpdateBoardSubscription = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -570,6 +902,19 @@ export type OnDeleteBoardSubscription = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
+    locations?:  {
+      __typename: "ModelLocationConnection",
+      items?:  Array< {
+        __typename: "Location",
+        id: string,
+        Latitude: number,
+        Longitude: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -592,6 +937,10 @@ export type OnCreateStickerSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
         nextToken?: string | null,
       } | null,
     } | null,
@@ -620,6 +969,10 @@ export type OnUpdateStickerSubscription = {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
     owner?: string | null,
   } | null,
@@ -646,7 +999,101 @@ export type OnDeleteStickerSubscription = {
         __typename: "ModelStickerConnection",
         nextToken?: string | null,
       } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateLocationSubscription = {
+  onCreateLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateLocationSubscription = {
+  onUpdateLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteLocationSubscription = {
+  onDeleteLocation?:  {
+    __typename: "Location",
+    id: string,
+    Latitude: number,
+    Longitude: number,
+    createdAt: string,
+    updatedAt: string,
+    board:  {
+      __typename: "Board",
+      id: string,
+      brand: string,
+      model: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+      stickers?:  {
+        __typename: "ModelStickerConnection",
+        nextToken?: string | null,
+      } | null,
+      locations?:  {
+        __typename: "ModelLocationConnection",
+        nextToken?: string | null,
+      } | null,
+    },
     owner?: string | null,
   } | null,
 };
