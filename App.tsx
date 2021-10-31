@@ -15,8 +15,6 @@ Amplify.configure({
     },
 });
 
-import 'react-native-url-polyfill/auto';
-
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {

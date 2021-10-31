@@ -1,9 +1,7 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import BoardsList from '../components/BoardsList';
-
 import { FAB } from 'react-native-paper';
-
 import { View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import { Board, ListBoardsQuery } from '../src/API';
@@ -18,18 +16,16 @@ export default function HomeScreen({
 }: RootTabScreenProps<'Home'>) {
     const [boards, setBoards] = React.useState<Board[]>([]);
 
-    React.useEffect(() => {
-        console.log('fetch');
+    useEffect(() => {
         fetchBoards();
     }, []);
-    React.useEffect(() => {
+    useEffect(() => {
         if (route.params?.reload) {
-            console.log('fetch');
             fetchBoards();
         }
     }, [route.params?.reload]);
 
-    async function fetchBoards() {
+    const fetchBoards = async () => {
         try {
             const response = await (API.graphql(
                 graphqlOperation(listBoards),
@@ -40,7 +36,7 @@ export default function HomeScreen({
         } catch (err) {
             console.log('error fetching boards');
         }
-    }
+    };
 
     return (
         <View style={styles.container}>

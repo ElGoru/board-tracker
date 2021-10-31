@@ -1,8 +1,8 @@
-import { API, graphqlOperation } from 'aws-amplify';
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-
+import { Button } from 'react-native-paper';
 import { Text, View } from '../components/Themed';
+import { API } from 'aws-amplify';
 import {
     CreateLocationInput,
     CreateLocationMutation,
@@ -12,8 +12,6 @@ import {
 import { getSticker } from '../src/graphql/queries';
 import { RootStackScreenProps } from '../types';
 import { GraphQLResult } from '@aws-amplify/api';
-import { Button } from 'react-native-paper';
-
 import * as Location from 'expo-location';
 import { createLocation } from '../src/graphql/mutations';
 
@@ -21,20 +19,19 @@ export default function IndexScreen({
     route,
     navigation,
 }: RootStackScreenProps<'Index'>) {
-    const [sticker, setSticker] = React.useState<Sticker>();
-    const [errorMsg, setErrorMsg] = React.useState<string>();
+    const [sticker, setSticker] = useState<Sticker>();
 
-    React.useEffect(() => {
+    useEffect(() => {
         const stickerId = route.params?.stickerId;
         if (!stickerId) return;
         fetchSticker(stickerId);
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setBoardLocation();
     }, [sticker]);
 
-    async function fetchSticker(stickerId: string) {
+    const fetchSticker = async (stickerId: string) => {
         try {
             const response = await (API.graphql({
                 query: getSticker,
@@ -45,9 +42,9 @@ export default function IndexScreen({
         } catch (err) {
             console.log(`error: ${err}`);
         }
-    }
+    };
 
-    async function setBoardLocation() {
+    const setBoardLocation = async () => {
         try {
             const location = await getLocation();
             if (!location || !sticker?.board) return;
@@ -57,25 +54,24 @@ export default function IndexScreen({
                 Longitude: location?.coords.longitude,
                 locationBoardId: sticker?.board?.id,
             };
-            const response = await (API.graphql({
+            await (API.graphql({
                 query: createLocation,
                 variables: { input: createLocationInput },
                 authMode: 'API_KEY',
             }) as Promise<GraphQLResult<CreateLocationMutation>>);
-            console.log(response);
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
-    async function getLocation() {
+    const getLocation = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
+            alert('Permission to access location was denied');
             return;
         }
         return await Location.getCurrentPositionAsync({});
-    }
+    };
 
     return (
         <View style={styles.container}>

@@ -1,35 +1,29 @@
-import * as React from 'react';
-
+import React, { useState } from 'react';
 import { TextInput, Button } from 'react-native-paper';
-
-import { Text, View } from '../components/Themed';
-
-import { API, graphqlOperation } from 'aws-amplify';
-import { GraphQLResult } from '@aws-amplify/api';
-import { createBoard } from '../src/graphql/mutations';
-import { Board, CreateBoardInput, CreateBoardMutation } from '../src/API';
+import { View } from '../components/Themed';
+import { CreateBoardInput } from '../src/API';
 
 export default function BoardForm(props: {
-    callback: (createBoardInput: CreateBoardInput) => Promise<boolean>;
+    callback: (createBoardInput: CreateBoardInput) => Promise<void>;
 }) {
     const formInitialState: CreateBoardInput = {
         brand: '',
         model: '',
         description: '',
     };
-    const [formState, setFormState] = React.useState(formInitialState);
+    const [formState, setFormState] = useState(formInitialState);
 
-    function setInput(key: any, value: any) {
+    const setInput = (key: any, value: any) => {
         setFormState({ ...formState, [key]: value });
-    }
+    };
 
-    function addBoard() {
+    const addBoard = () => {
         var isValid = validateInputs();
         if (!isValid) return;
         const board = { ...formState };
         setFormState(formInitialState);
         props.callback(board);
-    }
+    };
 
     const validateInputs = () => {
         if (formState.brand == '' || formState.model == '') {

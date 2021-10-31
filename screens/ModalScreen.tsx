@@ -1,17 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
+import React from 'react';
 import { Platform, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
 import StickerForm from '../components/StickerForm';
 import { Text, View } from '../components/Themed';
-import { withAuthenticator } from 'aws-amplify-react-native';
 import Auth from '@aws-amplify/auth';
 
 export default function ModalScreen() {
     const signOut = async () => {
         try {
-            let response = await Auth.signOut();
-            console.log(response);
+            await Auth.signOut();
         } catch (error) {
             console.log('error signing out: ', error);
         }
