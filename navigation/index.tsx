@@ -9,7 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Pressable } from 'react-native';
 
-import CustomDarkTheme from '../constants/Colors';
+import { CustomDarkTheme, CustomDarkAuthTheme } from '../constants/Colors';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -56,7 +56,13 @@ function RootNavigator() {
             />
             <Stack.Screen
                 name="Root"
-                component={withAuthenticator(BottomTabNavigator)}
+                component={withAuthenticator(
+                    BottomTabNavigator,
+                    false,
+                    [],
+                    null,
+                    CustomDarkAuthTheme,
+                )}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
