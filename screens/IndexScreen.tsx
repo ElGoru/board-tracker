@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
-import { Text, View } from '../components/Themed';
+import { Text, Button } from 'react-native-paper';
+import { View } from '../components/Themed';
 import { API } from 'aws-amplify';
 import {
     CreateLocationInput,

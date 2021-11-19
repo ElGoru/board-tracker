@@ -49,36 +49,24 @@ export default function StickerForm() {
                     size={20}
                     value={StickerSize.S}
                     style={styles.qrToggleButton}
-                    color={
-                        theme.dark ? theme.colors.primary : theme.colors.text
-                    }
                 />
                 <ToggleButton
                     icon="qrcode"
                     size={30}
                     value={StickerSize.M}
                     style={styles.qrToggleButton}
-                    color={
-                        theme.dark ? theme.colors.primary : theme.colors.text
-                    }
                 />
                 <ToggleButton
                     icon="qrcode"
                     size={40}
                     value={StickerSize.L}
                     style={styles.qrToggleButton}
-                    color={
-                        theme.dark ? theme.colors.primary : theme.colors.text
-                    }
                 />
                 <ToggleButton
                     icon="qrcode"
                     size={50}
                     value={StickerSize.XL}
                     style={styles.qrToggleButton}
-                    color={
-                        theme.dark ? theme.colors.primary : theme.colors.text
-                    }
                 />
             </ToggleButton.Row>
 
@@ -108,22 +96,18 @@ export default function StickerForm() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     qrToggleButton: {
         height: 60,
         width: 60,
-        backgroundColor: '#789',
     },
     colorInput: {
         width: 240,
         marginVertical: 10,
-        backgroundColor: '#987',
     },
     generateButton: {
         marginBottom: 10,
-        backgroundColor: '#345',
     },
 });

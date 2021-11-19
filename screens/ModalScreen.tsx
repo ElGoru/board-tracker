@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Platform, StyleSheet, TextInput } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import StickerForm from '../components/StickerForm';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
+import { Text } from 'react-native-paper';
 import Auth from '@aws-amplify/auth';
 
 export default function ModalScreen() {
@@ -17,11 +18,7 @@ export default function ModalScreen() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Modal</Text>
-            <View
-                style={styles.separator}
-                lightColor="#eee"
-                darkColor="rgba(255,255,255,0.1)"
-            />
+            <View style={styles.separator} />
             <StickerForm />
             <Button onPress={signOut}>Log Out</Button>
             {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -35,7 +32,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: 'pink',
         paddingTop: 10,
     },
     title: {

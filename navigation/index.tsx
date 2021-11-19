@@ -3,19 +3,13 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-    NavigationContainer,
-    DefaultTheme,
-    DarkTheme,
-} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+import CustomDarkTheme from '../constants/Colors';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -28,18 +22,16 @@ import {
 import LinkingConfiguration from './LinkingConfiguration';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useTheme } from 'react-native-paper';
 import RegisterBoardScreen from '../screens/RegisterBoardScreen';
 import IndexScreen from '../screens/IndexScreen';
 import { withAuthenticator } from 'aws-amplify-react-native';
 import { Platform } from 'react-native';
 
 export default function Navigation() {
-    const paperTheme = useTheme();
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
-            theme={paperTheme.dark ? DarkTheme : DefaultTheme}
+            theme={CustomDarkTheme}
         >
             <RootNavigator />
         </NavigationContainer>
@@ -91,14 +83,12 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-    const colorScheme = useColorScheme();
-    const paperTheme = useTheme();
-
     return (
         <BottomTab.Navigator
             initialRouteName="Home"
             screenOptions={{
-                tabBarActiveTintColor: Colors[colorScheme].tint,
+                tabBarActiveTintColor: CustomDarkTheme.colors.accent,
+                tabBarInactiveTintColor: CustomDarkTheme.colors.text,
             }}
         >
             <BottomTab.Screen
@@ -119,7 +109,7 @@ function BottomTabNavigator() {
                             <MaterialCommunityIcons
                                 name="account"
                                 size={25}
-                                color={Colors[colorScheme].text}
+                                color={CustomDarkTheme.colors.accent}
                                 style={{ marginRight: 15 }}
                             />
                         </Pressable>
@@ -140,9 +130,6 @@ function BottomTabNavigator() {
     );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
     name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
     color: string;

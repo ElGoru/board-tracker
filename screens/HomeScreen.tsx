@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import BoardsList from '../components/BoardsList';
-import { FAB } from 'react-native-paper';
+import { FAB, useTheme } from 'react-native-paper';
 import { View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import { Board, ListBoardsQuery } from '../src/API';
@@ -15,6 +15,7 @@ export default function HomeScreen({
     navigation,
 }: RootTabScreenProps<'Home'>) {
     const [boards, setBoards] = React.useState<Board[]>([]);
+    let colors = useTheme().colors;
 
     useEffect(() => {
         fetchBoards();
@@ -42,6 +43,7 @@ export default function HomeScreen({
         <View style={styles.container}>
             <BoardsList boards={boards} />
             <FAB
+                color={colors.background}
                 style={styles.fab}
                 icon="qrcode"
                 onPress={() => navigation.navigate('RegisterBoardScreen')}
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         padding: 10,
-        backgroundColor: '#789',
     },
     fab: {
         position: 'absolute',

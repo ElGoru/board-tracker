@@ -1,19 +1,18 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+import { DarkTheme as NavigationDarkTheme } from '@react-navigation/native';
+import { DarkTheme as PaperDarkTheme } from 'react-native-paper';
+import merge from 'deepmerge';
 
-export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+let CustomDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
+CustomDarkTheme = {
+    ...CustomDarkTheme,
+    roundness: 2,
+    colors: {
+        ...CustomDarkTheme.colors,
+        card: '#232F34',
+        primary: '#F9AA33',
+        accent: '#F9AA33',
+        background: '#344955',
+        text: '#eee',
+    },
 };
+export default CustomDarkTheme;
