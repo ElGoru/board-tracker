@@ -22,6 +22,15 @@ export const createBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -33,6 +42,15 @@ export const createBoard = /* GraphQL */ `
           Longitude
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -60,6 +78,15 @@ export const updateBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -71,6 +98,15 @@ export const updateBoard = /* GraphQL */ `
           Longitude
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -98,6 +134,15 @@ export const deleteBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -109,6 +154,15 @@ export const deleteBoard = /* GraphQL */ `
           Longitude
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -136,9 +190,25 @@ export const createSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -166,9 +236,25 @@ export const updateSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -196,9 +282,25 @@ export const deleteSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -226,9 +328,25 @@ export const updateLocation = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -256,9 +374,25 @@ export const deleteLocation = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -286,9 +420,25 @@ export const createLocation = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }

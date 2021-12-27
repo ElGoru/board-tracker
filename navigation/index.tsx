@@ -13,7 +13,7 @@ import { CustomDarkTheme, CustomDarkAuthTheme } from '../constants/Colors';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/HomeScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import FindScreen from '../screens/FindScreen';
 import {
     RootStackParamList,
     RootTabParamList,
@@ -123,10 +123,10 @@ function BottomTabNavigator() {
                 })}
             />
             <BottomTab.Screen
-                name="TabTwo"
-                component={TabTwoScreen}
+                name="Find"
+                component={FindScreen}
                 options={{
-                    title: 'Tab Two',
+                    title: 'Find',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon name="map-search" color={color} />
                     ),

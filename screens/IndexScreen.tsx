@@ -14,6 +14,7 @@ import { RootStackScreenProps } from '../types';
 import { GraphQLResult } from '@aws-amplify/api';
 import * as Location from 'expo-location';
 import { createLocation } from '../src/graphql/mutations';
+import { getLocation } from '../src/utils';
 
 export default function IndexScreen({
     route,
@@ -38,7 +39,7 @@ export default function IndexScreen({
                 variables: { id: stickerId },
                 authMode: 'API_KEY',
             }) as Promise<GraphQLResult<GetStickerQuery>>);
-            setSticker(response.data?.getSticker ?? undefined);
+            setSticker((response.data?.getSticker as Sticker) ?? undefined);
         } catch (err) {
             console.log(`error: ${err}`);
         }
@@ -62,15 +63,6 @@ export default function IndexScreen({
         } catch (err) {
             console.log(err);
         }
-    };
-
-    const getLocation = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-            alert('Permission to access location was denied');
-            return;
-        }
-        return await Location.getCurrentPositionAsync({});
     };
 
     return (

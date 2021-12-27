@@ -19,6 +19,15 @@ export const getBoard = /* GraphQL */ `
           color
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -30,6 +39,15 @@ export const getBoard = /* GraphQL */ `
           Longitude
           createdAt
           updatedAt
+          board {
+            id
+            brand
+            model
+            description
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -53,9 +71,25 @@ export const listBoards = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -80,9 +114,25 @@ export const getSticker = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -111,6 +161,12 @@ export const listStickers = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          stickers {
+            nextToken
+          }
+          locations {
+            nextToken
+          }
         }
         owner
       }
@@ -135,9 +191,25 @@ export const getLocation = /* GraphQL */ `
         updatedAt
         owner
         stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         locations {
+          items {
+            id
+            Latitude
+            Longitude
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -166,6 +238,12 @@ export const listLocations = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          stickers {
+            nextToken
+          }
+          locations {
+            nextToken
+          }
         }
         owner
       }
