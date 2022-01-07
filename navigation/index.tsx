@@ -26,13 +26,13 @@ import RegisterBoardScreen from '../screens/RegisterBoardScreen';
 import IndexScreen from '../screens/IndexScreen';
 import { withAuthenticator } from 'aws-amplify-react-native';
 import { Platform } from 'react-native';
+import { Auth } from 'aws-amplify';
 
 export default function Navigation() {
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
-            theme={CustomDarkTheme}
-        >
+            theme={CustomDarkTheme}>
             <RootNavigator />
         </NavigationContainer>
     );
@@ -47,8 +47,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator
-            initialRouteName={Platform.OS === 'web' ? 'Index' : 'Root'}
-        >
+            initialRouteName={Platform.OS === 'web' ? 'Index' : 'Root'}>
             <Stack.Screen
                 name="Index"
                 component={IndexScreen}
@@ -95,25 +94,45 @@ function BottomTabNavigator() {
             screenOptions={{
                 tabBarActiveTintColor: CustomDarkTheme.colors.accent,
                 tabBarInactiveTintColor: CustomDarkTheme.colors.text,
-            }}
-        >
+            }}>
             <BottomTab.Screen
                 name="Home"
                 component={HomeScreen}
                 options={({ navigation }: RootTabScreenProps<'Home'>) => ({
-                    title: 'Home',
+                    headerTitle: () => (
+                        <MaterialCommunityIcons
+                            name="all-inclusive"
+                            size={25}
+                            color={CustomDarkTheme.colors.accent}
+                            style={{ marginRight: 15 }}
+                        />
+                    ),
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon name="home" color={color} />
                     ),
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Pressable
                             onPress={() => navigation.navigate('Modal')}
                             style={({ pressed }) => ({
                                 opacity: pressed ? 0.5 : 1,
-                            })}
-                        >
+                            })}>
                             <MaterialCommunityIcons
-                                name="account"
+                                name="qrcode-edit"
+                                size={25}
+                                color={CustomDarkTheme.colors.accent}
+                                style={{ marginLeft: 15 }}
+                            />
+                        </Pressable>
+                    ),
+                    headerRight: () => (
+                        <Pressable
+                            onPress={() => Auth.signOut()}
+                            style={({ pressed }) => ({
+                                opacity: pressed ? 0.5 : 1,
+                            })}>
+                            <MaterialCommunityIcons
+                                name="logout"
                                 size={25}
                                 color={CustomDarkTheme.colors.accent}
                                 style={{ marginRight: 15 }}
