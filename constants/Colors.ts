@@ -15,6 +15,8 @@ export const CustomDarkTheme = {
         accent: '#F9AA33',
         background: '#344955',
         text: '#eee',
+        surface: '#344955',
+        border: '#232F34',
     },
 };
 

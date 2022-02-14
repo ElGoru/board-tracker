@@ -94,6 +94,7 @@ function BottomTabNavigator() {
             screenOptions={{
                 tabBarActiveTintColor: CustomDarkTheme.colors.accent,
                 tabBarInactiveTintColor: CustomDarkTheme.colors.text,
+                tabBarStyle: { overflow: 'hidden' },
             }}>
             <BottomTab.Screen
                 name="Home"
