@@ -45,7 +45,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName={Platform.OS === 'web' ? 'Index' : 'Root'}>
+      initialRouteName={Platform.OS === 'web' ? 'Index' : 'Root'}
+    >
       <Stack.Screen
         name="Index"
         component={IndexScreen}
@@ -93,7 +94,8 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: CustomDarkTheme.colors.accent,
         tabBarInactiveTintColor: CustomDarkTheme.colors.text,
         tabBarStyle: { overflow: 'hidden', paddingBottom: 3 },
-      }}>
+      }}
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
@@ -113,7 +115,8 @@ function BottomTabNavigator() {
               onPress={() => navigation.navigate('Modal')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}>
+              })}
+            >
               <MaterialCommunityIcons
                 name="qrcode-edit"
                 size={25}
@@ -127,7 +130,8 @@ function BottomTabNavigator() {
               onPress={() => Auth.signOut()}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}>
+              })}
+            >
               <MaterialCommunityIcons
                 name="logout"
                 size={25}

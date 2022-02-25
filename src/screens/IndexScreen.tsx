@@ -48,7 +48,6 @@ export default function IndexScreen({
   const setBoardLocation = async () => {
     try {
       const location = await getLocation();
-      console.log(JSON.stringify(sticker));
       if (!location || !sticker?.board) return;
 
       const createLocationInput: CreateLocationInput = {

@@ -115,7 +115,7 @@ declare module 'aws-amplify-react-native' {
     authenticatorComponents?: typeof AuthPiece[],
     federated?: any,
     theme?: iTheme,
-    signUpConfig?: iSignUpConfig
+    signUpConfig?: iSignUpConfig,
   ): React.ComponentClass<iWithAuthenticatorProps>;
 
   interface iAuthenticatorProps {
@@ -183,7 +183,7 @@ declare module 'aws-amplify-react-native' {
     signOut: () => void;
   }
   export function withOAuth(
-    Comp: React.ComponentType<iWOACompProps>
+    Comp: React.ComponentType<iWOACompProps>,
   ): React.ComponentClass<iWithOAuthProps>;
 
   // *** API ***

@@ -13,7 +13,8 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </Text>
 
         <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+        >
           <Text>{path}</Text>
         </View>
 
