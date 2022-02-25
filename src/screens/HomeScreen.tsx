@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 import BoardsList from '../components/BoardsList';
 import { FAB, useTheme } from 'react-native-paper';
 import { View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
-import { Board, ListBoardsQuery } from '../src/API';
+import { RootTabScreenProps } from '../types/navigation';
+import { Board, ListBoardsQuery } from '../types/graphql';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listBoards } from '../src/graphql/queries';
+import { listBoards } from '../graphql/queries';
 import { GraphQLResult } from '@aws-amplify/api';
-import { notEmpty } from '../src/utils';
+import { notEmpty } from '../helpers/utils';
 
 export default function HomeScreen({
     route,

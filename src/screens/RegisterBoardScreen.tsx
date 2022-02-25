@@ -2,12 +2,12 @@ import React, { useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import BoardForm from '../components/BoardForm';
 import QRScanner from '../components/QRScanner';
-import { getSticker } from '../src/graphql/queries';
+import { getSticker } from '../graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
 import { GraphQLResult } from '@aws-amplify/api';
-import { createBoard, updateSticker } from '../src/graphql/mutations';
+import { createBoard, updateSticker } from '../graphql/mutations';
 import { View } from '../components/Themed';
-import { RootStackScreenProps } from '../types';
+import { RootStackScreenProps } from '../types/navigation';
 import * as Linking from 'expo-linking';
 import {
     CreateBoardInput,

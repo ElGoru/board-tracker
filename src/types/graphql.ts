@@ -73,7 +73,7 @@ export type Board = {
 
 export type ModelStickerConnection = {
   __typename: "ModelStickerConnection",
-  items?:  Array<Sticker | null > | null,
+  items:  Array<Sticker | null >,
   nextToken?: string | null,
 };
 
@@ -98,7 +98,7 @@ export enum StickerSize {
 
 export type ModelLocationConnection = {
   __typename: "ModelLocationConnection",
-  items?:  Array<Location | null > | null,
+  items:  Array<Location | null >,
   nextToken?: string | null,
 };
 
@@ -156,6 +156,7 @@ export type DeleteStickerInput = {
 };
 
 export type UpdateLocationInput = {
+  id: string,
   Latitude?: number | null,
   Longitude?: number | null,
   locationBoardId?: string | null,
@@ -220,7 +221,7 @@ export type ModelIDInput = {
 
 export type ModelBoardConnection = {
   __typename: "ModelBoardConnection",
-  items?:  Array<Board | null > | null,
+  items:  Array<Board | null >,
   nextToken?: string | null,
 };
 
@@ -258,7 +259,7 @@ export type CreateBoardMutation = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -276,12 +277,12 @@ export type CreateBoardMutation = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -299,7 +300,7 @@ export type CreateBoardMutation = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -322,7 +323,7 @@ export type UpdateBoardMutation = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -340,12 +341,12 @@ export type UpdateBoardMutation = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -363,7 +364,7 @@ export type UpdateBoardMutation = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -386,7 +387,7 @@ export type DeleteBoardMutation = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -404,12 +405,12 @@ export type DeleteBoardMutation = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -427,7 +428,7 @@ export type DeleteBoardMutation = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -457,7 +458,7 @@ export type CreateStickerMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -465,12 +466,12 @@ export type CreateStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -478,7 +479,7 @@ export type CreateStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -510,7 +511,7 @@ export type UpdateStickerMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -518,12 +519,12 @@ export type UpdateStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -531,7 +532,7 @@ export type UpdateStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -563,7 +564,7 @@ export type DeleteStickerMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -571,12 +572,12 @@ export type DeleteStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -584,7 +585,7 @@ export type DeleteStickerMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -616,7 +617,7 @@ export type UpdateLocationMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -624,12 +625,12 @@ export type UpdateLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -637,7 +638,7 @@ export type UpdateLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -669,7 +670,7 @@ export type DeleteLocationMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -677,12 +678,12 @@ export type DeleteLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -690,7 +691,7 @@ export type DeleteLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -722,7 +723,7 @@ export type CreateLocationMutation = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -730,12 +731,12 @@ export type CreateLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -743,7 +744,7 @@ export type CreateLocationMutation = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -767,7 +768,7 @@ export type GetBoardQuery = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -785,12 +786,12 @@ export type GetBoardQuery = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -808,7 +809,7 @@ export type GetBoardQuery = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -823,7 +824,7 @@ export type ListBoardsQueryVariables = {
 export type ListBoardsQuery = {
   listBoards?:  {
     __typename: "ModelBoardConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Board",
       id: string,
       brand: string,
@@ -834,7 +835,7 @@ export type ListBoardsQuery = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -842,12 +843,12 @@ export type ListBoardsQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -855,10 +856,10 @@ export type ListBoardsQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
-    } | null > | null,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -886,7 +887,7 @@ export type GetStickerQuery = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -894,12 +895,12 @@ export type GetStickerQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -907,7 +908,7 @@ export type GetStickerQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -924,7 +925,7 @@ export type ListStickersQueryVariables = {
 export type ListStickersQuery = {
   listStickers?:  {
     __typename: "ModelStickerConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Sticker",
       id: string,
       size: StickerSize,
@@ -950,7 +951,7 @@ export type ListStickersQuery = {
         } | null,
       } | null,
       owner?: string | null,
-    } | null > | null,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -978,7 +979,7 @@ export type GetLocationQuery = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -986,12 +987,12 @@ export type GetLocationQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -999,7 +1000,7 @@ export type GetLocationQuery = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -1016,7 +1017,7 @@ export type ListLocationsQueryVariables = {
 export type ListLocationsQuery = {
   listLocations?:  {
     __typename: "ModelLocationConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Location",
       id: string,
       Latitude: number,
@@ -1042,7 +1043,7 @@ export type ListLocationsQuery = {
         } | null,
       },
       owner?: string | null,
-    } | null > | null,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -1063,7 +1064,7 @@ export type OnCreateBoardSubscription = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -1081,12 +1082,12 @@ export type OnCreateBoardSubscription = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -1104,7 +1105,7 @@ export type OnCreateBoardSubscription = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -1126,7 +1127,7 @@ export type OnUpdateBoardSubscription = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -1144,12 +1145,12 @@ export type OnUpdateBoardSubscription = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -1167,7 +1168,7 @@ export type OnUpdateBoardSubscription = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -1189,7 +1190,7 @@ export type OnDeleteBoardSubscription = {
     owner?: string | null,
     stickers?:  {
       __typename: "ModelStickerConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Sticker",
         id: string,
         size: StickerSize,
@@ -1207,12 +1208,12 @@ export type OnDeleteBoardSubscription = {
           owner?: string | null,
         } | null,
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
     locations?:  {
       __typename: "ModelLocationConnection",
-      items?:  Array< {
+      items:  Array< {
         __typename: "Location",
         id: string,
         Latitude: number,
@@ -1230,7 +1231,7 @@ export type OnDeleteBoardSubscription = {
           owner?: string | null,
         },
         owner?: string | null,
-      } | null > | null,
+      } | null >,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -1255,7 +1256,7 @@ export type OnCreateStickerSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1263,12 +1264,12 @@ export type OnCreateStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1276,7 +1277,7 @@ export type OnCreateStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1303,7 +1304,7 @@ export type OnUpdateStickerSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1311,12 +1312,12 @@ export type OnUpdateStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1324,7 +1325,7 @@ export type OnUpdateStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1351,7 +1352,7 @@ export type OnDeleteStickerSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1359,12 +1360,12 @@ export type OnDeleteStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1372,7 +1373,7 @@ export type OnDeleteStickerSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1399,7 +1400,7 @@ export type OnCreateLocationSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1407,12 +1408,12 @@ export type OnCreateLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1420,7 +1421,7 @@ export type OnCreateLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -1447,7 +1448,7 @@ export type OnUpdateLocationSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1455,12 +1456,12 @@ export type OnUpdateLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1468,7 +1469,7 @@ export type OnUpdateLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
@@ -1495,7 +1496,7 @@ export type OnDeleteLocationSubscription = {
       owner?: string | null,
       stickers?:  {
         __typename: "ModelStickerConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Sticker",
           id: string,
           size: StickerSize,
@@ -1503,12 +1504,12 @@ export type OnDeleteLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
       locations?:  {
         __typename: "ModelLocationConnection",
-        items?:  Array< {
+        items:  Array< {
           __typename: "Location",
           id: string,
           Latitude: number,
@@ -1516,7 +1517,7 @@ export type OnDeleteLocationSubscription = {
           createdAt: string,
           updatedAt: string,
           owner?: string | null,
-        } | null > | null,
+        } | null >,
         nextToken?: string | null,
       } | null,
     },
