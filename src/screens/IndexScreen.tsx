@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-paper';
-import { View } from '../components/Themed';
 import { API } from 'aws-amplify';
+
+import { View } from '../components/Themed';
 import {
   CreateLocationInput,
   CreateLocationMutation,
@@ -10,16 +11,15 @@ import {
   Sticker,
 } from '../types/graphql';
 import { getSticker } from '../graphql/queries';
-import { RootStackScreenProps } from '../types/navigation';
 import { GraphQLResult } from '@aws-amplify/api';
-import * as Location from 'expo-location';
 import { createLocation } from '../graphql/mutations';
 import { getLocation } from '../helpers';
+import { PublicStackScreenProps } from '../navigation/PublicStackNavigator';
 
 export default function IndexScreen({
   route,
   navigation,
-}: RootStackScreenProps<'Index'>) {
+}: PublicStackScreenProps<'Index'>) {
   const [sticker, setSticker] = useState<Sticker>();
 
   useEffect(() => {
@@ -70,7 +70,12 @@ export default function IndexScreen({
       <Text>{sticker?.board?.owner}</Text>
       <Text>{sticker?.board?.brand}</Text>
       <Text>{route.params?.stickerId}</Text>
-      <Button onPress={() => navigation.navigate('Root')}>
+      <Button
+        onPress={() =>
+          navigation.navigate('PrivateNavigator', {
+            screen: 'PrivateTabNavigator',
+          })
+        }>
         Go to home screen!
       </Button>
     </View>

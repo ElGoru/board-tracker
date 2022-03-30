@@ -4,26 +4,35 @@
  * https://reactnavigation.org/docs/configuring-links
  */
 
-import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
+import { LinkingOptions } from '@react-navigation/native';
 
-import { RootStackParamList } from '../types/navigation';
+import { RootStackParamList } from '.';
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Index: {
-        path: ':stickerId?',
-      },
-      Root: {
+      PublicNavigator: {
         screens: {
-          Home: 'HomeScreen',
-          Find: 'FindScreen',
+          Index: {
+            path: ':stickerId?',
+          },
+          NotFound: '*',
         },
       },
-      Modal: 'modal',
-      NotFound: '*',
+      PrivateNavigator: {
+        screens: {
+          PrivateTabNavigator: {
+            screens: {
+              Home: 'HomeScreen',
+              Find: 'FindScreen',
+            },
+          },
+          Modal: 'Modal',
+          RegisterBoard: 'RegisterBoard',
+        },
+      },
     },
   },
 };

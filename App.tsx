@@ -6,7 +6,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import Amplify from 'aws-amplify';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
-import Navigation from './src/navigation';
+import { Navigation } from './src/navigation';
 import { CustomDarkTheme } from './src/constants/Colors';
 import config from './src/aws-exports';
 Amplify.configure({

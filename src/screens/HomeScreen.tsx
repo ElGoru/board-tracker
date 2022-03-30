@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, useTheme } from 'react-native-paper';
-import { API, graphqlOperation } from 'aws-amplify';
-import { GraphQLResult } from '@aws-amplify/api';
 
 import BoardsList from '../components/BoardsList';
 import { View } from '../components/Themed';
-import { RootTabScreenProps } from '../types/navigation';
-import { Board, ListBoardsQuery } from '../types/graphql';
-import { listBoards } from '../graphql/queries';
-import { notEmpty } from '../helpers';
 import { useBoards } from '../hooks/useBoards';
+import { PrivateTabScreenProps } from '../navigation/PrivateTabNavigator';
 
 export default function HomeScreen({
-  route,
   navigation,
-}: RootTabScreenProps<'Home'>) {
+}: PrivateTabScreenProps<'Home'>) {
   let colors = useTheme().colors;
 
   const { data } = useBoards();
@@ -28,7 +22,7 @@ export default function HomeScreen({
         color={colors.background}
         style={styles.fab}
         icon="qrcode"
-        onPress={() => navigation.navigate('RegisterBoardScreen')}
+        onPress={() => navigation.navigate('RegisterBoard')}
       />
     </View>
   );

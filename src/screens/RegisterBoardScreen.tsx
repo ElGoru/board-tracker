@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { API, graphqlOperation } from 'aws-amplify';
+import { GraphQLResult } from '@aws-amplify/api';
+import * as Linking from 'expo-linking';
+
 import BoardForm from '../components/BoardForm';
 import QRScanner from '../components/QRScanner';
 import { getSticker } from '../graphql/queries';
-import { API, graphqlOperation } from 'aws-amplify';
-import { GraphQLResult } from '@aws-amplify/api';
 import { createBoard, updateSticker } from '../graphql/mutations';
 import { View } from '../components/Themed';
-import { RootStackScreenProps } from '../types/navigation';
-import * as Linking from 'expo-linking';
 import {
   CreateBoardInput,
   CreateBoardMutation,
@@ -16,11 +16,12 @@ import {
   Sticker,
   UpdateStickerInput,
   UpdateStickerMutation,
-} from '../src/API';
+} from '../types/graphql';
+import { PrivateStackScreenProps } from '../navigation/PrivateStackNavigator';
 
 export default function RegisterBoardScreen({
   navigation,
-}: RootStackScreenProps<'RegisterBoardScreen'>) {
+}: PrivateStackScreenProps<'RegisterBoard'>) {
   const [sticker, setSticker] = useState<Sticker>();
 
   const qrScannerCallback = useCallback(async data => {
@@ -31,8 +32,9 @@ export default function RegisterBoardScreen({
         graphqlOperation(getSticker, { id: stickerId }),
       ) as Promise<GraphQLResult<GetStickerQuery>>);
       if (response.data?.getSticker?.board) {
-        navigation.navigate('Index', {
-          stickerId: response.data?.getSticker?.id,
+        navigation.navigate('PublicNavigator', {
+          screen: 'Index',
+          params: { stickerId: response.data?.getSticker?.id },
         });
         return;
       }
@@ -59,7 +61,7 @@ export default function RegisterBoardScreen({
             input: updateStickerInput,
           }),
         ) as Promise<GraphQLResult<UpdateStickerMutation>>);
-        navigation.navigate('Root', {
+        navigation.navigate('PrivateTabNavigator', {
           screen: 'Home',
           params: { reload: true },
         });

@@ -1,17 +1,33 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Auth } from 'aws-amplify';
 import React from 'react';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {
+  BottomTabScreenProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import { Auth } from 'aws-amplify';
 import { Pressable } from 'react-native';
 
 import FindScreen from '../screens/FindScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { RootTabParamList, RootTabScreenProps } from '../types/navigation';
 import { CustomDarkTheme } from '../constants/Colors';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PrivateStackParamList } from './PrivateStackNavigator';
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+export type PrivateTabParamList = {
+  Home: { reload: boolean } | undefined;
+  Find: undefined;
+};
 
-export const BottomTabNavigator = () => {
+export type PrivateTabScreenProps<Screen extends keyof PrivateTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<PrivateTabParamList, Screen>,
+    NativeStackScreenProps<PrivateStackParamList>
+  >;
+
+const BottomTab = createBottomTabNavigator<PrivateTabParamList>();
+
+export const PrivateTabNavigator = () => {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -23,7 +39,7 @@ export const BottomTabNavigator = () => {
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
-        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+        options={({ navigation }: PrivateTabScreenProps<'Home'>) => ({
           headerTitle: () => (
             <MaterialCommunityIcons
               name="all-inclusive"
