@@ -7,7 +7,7 @@ import MapView, {
 } from 'react-native-maps';
 import { Dimensions, Platform, StyleSheet, Text } from 'react-native';
 import { View } from '../components/Themed';
-import { getLocation, notEmpty } from '../helpers/utils';
+import { getLocation, notEmpty } from '../helpers';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listBoards } from '../graphql/queries';
 import { Board, ListBoardsQuery } from '../types/graphql';

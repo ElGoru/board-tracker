@@ -14,7 +14,7 @@ import { RootStackScreenProps } from '../types/navigation';
 import { GraphQLResult } from '@aws-amplify/api';
 import * as Location from 'expo-location';
 import { createLocation } from '../graphql/mutations';
-import { getLocation } from '../helpers/utils';
+import { getLocation } from '../helpers';
 
 export default function IndexScreen({
   route,

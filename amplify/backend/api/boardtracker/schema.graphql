@@ -1,47 +1,47 @@
 type Board
-    @model
-    @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
-    id: ID!
-    brand: String!
-    model: String!
-    description: String
-    stickers: [Sticker!] @connection(name: "BoardStickers")
-    locations: [Location!] @connection(name: "BoardLocations")
+  @model
+  @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
+  id: ID!
+  brand: String!
+  model: String!
+  description: String
+  stickers: [Sticker!] @connection(name: "BoardStickers")
+  locations: [Location!] @connection(name: "BoardLocations")
 }
 
 #Create admin group with create operations
 type Sticker
-    @model
-    @auth(
-        rules: [
-            { allow: owner }
-            { allow: public, operations: [read] }
-            { allow: private, operations: [read, update] }
-        ]
-    ) {
-    id: ID!
-    size: StickerSize!
-    color: String!
-    board: Board @connection(name: "BoardStickers")
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: public, operations: [read] }
+      { allow: private, operations: [read, update] }
+    ]
+  ) {
+  id: ID!
+  size: StickerSize!
+  color: String!
+  board: Board @connection(name: "BoardStickers")
 }
 
 type Location
-    @model
-    @auth(
-        rules: [
-            { allow: owner }
-            { allow: public, operations: [create, read] }
-            { allow: private, operations: [read] }
-        ]
-    ) {
-    Latitude: Float!
-    Longitude: Float!
-    board: Board! @connection(name: "BoardLocations")
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: public, operations: [create, read] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  Latitude: Float!
+  Longitude: Float!
+  board: Board @connection(name: "BoardLocations")
 }
 
 enum StickerSize {
-    XL
-    L
-    M
-    S
+  XL
+  L
+  M
+  S
 }
