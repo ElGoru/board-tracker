@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { TextInput, Button } from 'react-native-paper';
 import { View } from '../components/Themed';
-import { CreateBoardInput } from '../src/API';
+import { CreateBoardInput } from '../types/graphql';
 
-export default function BoardForm(props: {
-  callback: (createBoardInput: CreateBoardInput) => Promise<void>;
-}) {
+export const BoardForm = (props: {
+  onSubmit: (createBoardInput: CreateBoardInput) => Promise<void>;
+}) => {
   const formInitialState: CreateBoardInput = {
     brand: '',
     model: '',
@@ -22,7 +22,7 @@ export default function BoardForm(props: {
     if (!isValid) return;
     const board = { ...formState };
     setFormState(formInitialState);
-    props.callback(board);
+    props.onSubmit(board);
   };
 
   const validateInputs = () => {
@@ -58,4 +58,4 @@ export default function BoardForm(props: {
       <Button onPress={addBoard}>Register Board</Button>
     </View>
   );
-}
+};

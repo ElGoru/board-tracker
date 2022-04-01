@@ -30,7 +30,10 @@ const linking: LinkingOptions<RootStackParamList> = {
             },
           },
           Modal: 'Modal',
-          RegisterBoard: 'RegisterBoard',
+          StickerScanner: 'StickerScannerScreen',
+          RegisterBoard: {
+            path: 'registerboard/:stickerId',
+          },
         },
       },
     },

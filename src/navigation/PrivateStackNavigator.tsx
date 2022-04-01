@@ -16,11 +16,13 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import { RootStackParamList } from '.';
+import { StickerScannerScreen } from '../screens/StickerScannerScreen';
 
 export type PrivateStackParamList = {
   PrivateTabNavigator: NavigatorScreenParams<PrivateTabParamList> | undefined;
   Modal: undefined;
-  RegisterBoard: undefined;
+  RegisterBoard: { stickerId: string };
+  StickerScanner: undefined;
 };
 
 export type PrivateStackScreenProps<
@@ -42,6 +44,7 @@ export const PrivateStackNavigator = () => {
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="StickerScanner" component={StickerScannerScreen} />
         <Stack.Screen
           name="RegisterBoard"
           component={RegisterBoardScreen}

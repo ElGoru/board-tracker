@@ -22,7 +22,7 @@ export default function HomeScreen({
         color={colors.background}
         style={styles.fab}
         icon="qrcode"
-        onPress={() => navigation.navigate('RegisterBoard')}
+        onPress={() => navigation.navigate('StickerScanner')}
       />
     </View>
   );
