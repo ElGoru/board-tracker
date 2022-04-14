@@ -4,6 +4,7 @@
  *
  */
 import * as React from 'react';
+import { Platform } from 'react-native';
 import { withAuthenticator } from 'aws-amplify-react-native';
 import {
   NavigationContainer,
@@ -44,7 +45,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export const Navigation = () => {
   return (
     <NavigationContainer linking={linkingConfiguration} theme={CustomDarkTheme}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName={
+          Platform.OS === 'web' ? 'PublicNavigator' : 'PrivateNavigator'
+        }>
         <Stack.Screen
           name="PublicNavigator"
           component={PublicStackNavigator}

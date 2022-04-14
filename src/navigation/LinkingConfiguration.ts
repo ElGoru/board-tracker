@@ -25,12 +25,20 @@ export const linkingConfiguration: LinkingOptions<RootStackParamList> = {
         screens: {
           PrivateTabNavigator: {
             screens: {
-              Home: 'HomeScreen',
-              Find: 'FindScreen',
+              Home: {
+                path: 'home/',
+              },
+              Find: {
+                path: 'find/',
+              },
             },
           },
-          Modal: 'Modal',
-          StickerScanner: 'StickerScannerScreen',
+          Modal: {
+            path: 'modal/',
+          },
+          StickerScanner: {
+            path: 'stickerscanner/',
+          },
           RegisterBoard: {
             path: 'registerboard/:stickerId',
           },

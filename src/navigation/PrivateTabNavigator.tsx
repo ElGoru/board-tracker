@@ -16,7 +16,7 @@ import { CustomDarkTheme } from '../constants/Colors';
 import { PrivateStackParamList } from './PrivateStackNavigator';
 
 export type PrivateTabParamList = {
-  Home: { reload: boolean } | undefined;
+  Home: undefined;
   Find: undefined;
 };
 
