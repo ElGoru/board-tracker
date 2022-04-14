@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { TextInput, Button } from 'react-native-paper';
+
 import { View } from '../components/Themed';
 import { CreateBoardInput } from '../types/graphql';
 
-export const BoardForm = (props: {
+const formInitialState: CreateBoardInput = {
+  brand: '',
+  model: '',
+  description: '',
+};
+
+export const BoardForm = ({
+  onSubmit,
+}: {
   onSubmit: (createBoardInput: CreateBoardInput) => Promise<void>;
 }) => {
-  const formInitialState: CreateBoardInput = {
-    brand: '',
-    model: '',
-    description: '',
-  };
   const [formState, setFormState] = useState(formInitialState);
 
   const setInput = (key: any, value: any) => {
@@ -22,7 +26,7 @@ export const BoardForm = (props: {
     if (!isValid) return;
     const board = { ...formState };
     setFormState(formInitialState);
-    props.onSubmit(board);
+    onSubmit(board);
   };
 
   const validateInputs = () => {

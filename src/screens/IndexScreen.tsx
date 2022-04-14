@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { API } from 'aws-amplify';
+import { GraphQLResult } from '@aws-amplify/api';
 
 import { View } from '../components/Themed';
+import { getSticker } from '../graphql/queries';
+import { createLocation } from '../graphql/mutations';
+import { getLocation } from '../helpers';
+import { PublicStackScreenProps } from '../navigation/PublicStackNavigator';
 import {
   CreateLocationInput,
   CreateLocationMutation,
   GetStickerQuery,
   Sticker,
 } from '../types/graphql';
-import { getSticker } from '../graphql/queries';
-import { GraphQLResult } from '@aws-amplify/api';
-import { createLocation } from '../graphql/mutations';
-import { getLocation } from '../helpers';
-import { PublicStackScreenProps } from '../navigation/PublicStackNavigator';
 
-export default function IndexScreen({
+export const IndexScreen = ({
   route,
   navigation,
-}: PublicStackScreenProps<'Index'>) {
-  const [sticker, setSticker] = useState<Sticker>();
+}: PublicStackScreenProps<'Index'>) => {
+  const [sticker, setSticker] = React.useState<Sticker>();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const stickerId = route.params?.stickerId;
     if (!stickerId) return;
     fetchSticker(stickerId);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setBoardLocation();
   }, [sticker]);
 
@@ -80,7 +80,7 @@ export default function IndexScreen({
       </Button>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

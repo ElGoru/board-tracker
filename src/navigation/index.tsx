@@ -4,6 +4,7 @@
  *
  */
 import * as React from 'react';
+import { withAuthenticator } from 'aws-amplify-react-native';
 import {
   NavigationContainer,
   NavigatorScreenParams,
@@ -12,11 +13,10 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { withAuthenticator } from 'aws-amplify-react-native';
 
 import { CustomDarkTheme, CustomDarkAuthTheme } from '../constants/Colors';
 
-import LinkingConfiguration from './LinkingConfiguration';
+import { linkingConfiguration } from './LinkingConfiguration';
 import {
   PublicStackNavigator,
   PublicStackParamList,
@@ -43,7 +43,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Navigation = () => {
   return (
-    <NavigationContainer linking={LinkingConfiguration} theme={CustomDarkTheme}>
+    <NavigationContainer linking={linkingConfiguration} theme={CustomDarkTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="PublicNavigator"

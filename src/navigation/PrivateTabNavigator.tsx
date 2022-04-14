@@ -1,17 +1,18 @@
 import React from 'react';
+import { Auth } from 'aws-amplify';
+import { Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   BottomTabScreenProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { Auth } from 'aws-amplify';
-import { Pressable } from 'react-native';
 
-import FindScreen from '../screens/FindScreen';
-import HomeScreen from '../screens/HomeScreen';
+import { FindScreen } from '../screens/FindScreen';
+import { HomeScreen } from '../screens/HomeScreen';
 import { CustomDarkTheme } from '../constants/Colors';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import { PrivateStackParamList } from './PrivateStackNavigator';
 
 export type PrivateTabParamList = {

@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { CompositeScreenProps } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
-import IndexScreen from '../screens/IndexScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
-import { CompositeScreenProps } from '@react-navigation/native';
+import { IndexScreen } from '../screens/IndexScreen';
+import { NotFoundScreen } from '../screens/NotFoundScreen';
+
 import { RootStackParamList } from '.';
 
 export type PublicStackParamList = {

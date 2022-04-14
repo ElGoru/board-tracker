@@ -6,7 +6,7 @@ import { Text } from 'react-native-paper';
 import StickerForm from '../components/StickerForm';
 import { View } from '../components/Themed';
 
-export default function ModalScreen() {
+export const ModalScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Modal</Text>
@@ -16,7 +16,7 @@ export default function ModalScreen() {
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { GraphQLResult } from '@aws-amplify/api';
+import { API, graphqlOperation } from 'aws-amplify';
+import { Dimensions, Platform, StyleSheet, Text } from 'react-native';
 import MapView, {
   Callout,
   LatLng,
   Marker,
   MarkerProps,
 } from 'react-native-maps';
-import { Dimensions, Platform, StyleSheet, Text } from 'react-native';
+
 import { View } from '../components/Themed';
-import { getLocation, notEmpty } from '../helpers';
-import { API, graphqlOperation } from 'aws-amplify';
 import { listBoards } from '../graphql/queries';
 import { Board, ListBoardsQuery } from '../types/graphql';
-import { GraphQLResult } from '@aws-amplify/api';
+import { getLocation, notEmpty } from '../helpers';
 
 type Region = {
   latitude: number;
@@ -20,22 +21,22 @@ type Region = {
   longitudeDelta: number;
 };
 
-export default function TabTwoScreen() {
+export const FindScreen = () => {
   const [boards, setBoards] = React.useState<Board[]>([]);
-  const [markers, setMarkers] = useState<MarkerProps[]>([]);
-  const [region, setRegion] = useState<Region>({
+  const [markers, setMarkers] = React.useState<MarkerProps[]>([]);
+  const [region, setRegion] = React.useState<Region>({
     latitude: 0,
     longitude: 0,
     latitudeDelta: 1,
     longitudeDelta: 1,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchBoards();
     setInitialRegion();
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const markers: MarkerProps[] = boards
       .map(board => {
         const location = board.locations?.items?.filter(notEmpty)[0];
@@ -93,7 +94,7 @@ export default function TabTwoScreen() {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

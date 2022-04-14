@@ -9,7 +9,7 @@ import { LinkingOptions } from '@react-navigation/native';
 
 import { RootStackParamList } from '.';
 
-const linking: LinkingOptions<RootStackParamList> = {
+export const linkingConfiguration: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
@@ -39,5 +39,3 @@ const linking: LinkingOptions<RootStackParamList> = {
     },
   },
 };
-
-export default linking;

@@ -1,35 +1,36 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Sticker } from '../types/graphql';
-import SvgQRCode from 'react-native-qrcode-svg';
 import * as Linking from 'expo-linking';
-import { Link, useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native-paper';
+import React from 'react';
+import SvgQRCode from 'react-native-qrcode-svg';
+import { View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Button, Text } from 'react-native-paper';
 
-export default function QRSticker(props: { sticker: Sticker }) {
+import { Sticker } from '../types/graphql';
+
+export const QRSticker = ({ sticker }: { sticker: Sticker }) => {
   const navigation = useNavigation();
-  const url = Linking.makeUrl(`/registerboard/${props.sticker.id}`);
+  const url = Linking.makeUrl(`/registerboard/${sticker.id}`);
   return (
     <View style={styles.container}>
       <View style={styles.qr}>
         <SvgQRCode value={url} size={200} />
       </View>
       <Text style={styles.title}>
-        Size: {props.sticker.size} Color: {props.sticker.color}
+        Size: {sticker.size} Color: {sticker.color}
       </Text>
       <Button
         mode="contained"
         onPress={() =>
           navigation.navigate('PrivateNavigator', {
             screen: 'RegisterBoard',
-            params: { stickerId: props.sticker.id },
+            params: { stickerId: sticker.id },
           })
         }>
         Register Board
       </Button>
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

@@ -9,10 +9,10 @@ import { useCreateBoard } from '../hooks/useCreateBoard';
 import { useUpdateSticker } from '../hooks/useUpdateSticker';
 import { useSticker } from '../hooks/useSticker';
 
-export default function RegisterBoardScreen({
+export const RegisterBoardScreen = ({
   route,
   navigation,
-}: PrivateStackScreenProps<'RegisterBoard'>) {
+}: PrivateStackScreenProps<'RegisterBoard'>) => {
   const stickerId = route.params.stickerId;
   const sticker = useSticker(stickerId);
   const createBoard = useCreateBoard();
@@ -50,7 +50,7 @@ export default function RegisterBoardScreen({
       <BoardForm onSubmit={onSubmit} />
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

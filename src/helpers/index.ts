@@ -1,10 +1,10 @@
 import * as Location from 'expo-location';
 
-export function notEmpty<TValue>(
+export const notEmpty = <TValue>(
   value: TValue | null | undefined,
-): value is TValue {
+): value is TValue => {
   return value !== null && value !== undefined;
-}
+};
 
 export const getLocation = async () => {
   let { status } = await Location.requestForegroundPermissionsAsync();

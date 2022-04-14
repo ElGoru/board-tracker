@@ -2,11 +2,12 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button, ToggleButton } from 'react-native-paper';
 import { useTheme } from 'react-native-paper';
-
 import { API, graphqlOperation } from 'aws-amplify';
+
 import { createSticker } from '../graphql/mutations';
 import { Sticker, StickerSize, CreateStickerInput } from '../types/graphql';
-import QRSticker from './QRSticker';
+
+import { QRSticker } from './QRSticker';
 
 const formInitialState: CreateStickerInput = {
   size: StickerSize.M,
@@ -41,8 +42,7 @@ export default function StickerForm() {
             ['size']: StickerSize[value as keyof typeof StickerSize],
           })
         }
-        value={formState.size}
-      >
+        value={formState.size}>
         <ToggleButton
           icon="qrcode"
           size={20}
@@ -81,8 +81,7 @@ export default function StickerForm() {
       <Button
         icon="qrcode"
         onPress={() => addSticker()}
-        style={styles.generateButton}
-      >
+        style={styles.generateButton}>
         Generate QR sticker
       </Button>
 

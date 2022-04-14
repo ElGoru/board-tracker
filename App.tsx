@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import useCachedResources from './src/hooks/useCachedResources';
+import Amplify from 'aws-amplify';
+import { StatusBar } from 'expo-status-bar';
+import { useCachedResources } from './src/hooks/useCachedResources';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
-import Amplify from 'aws-amplify';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 import { Navigation } from './src/navigation';

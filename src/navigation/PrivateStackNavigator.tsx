@@ -1,22 +1,22 @@
 import * as React from 'react';
 import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
+import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
-import ModalScreen from '../screens/ModalScreen';
-import RegisterBoardScreen from '../screens/RegisterBoardScreen';
+import { ModalScreen } from '../screens/ModalScreen';
+import { RegisterBoardScreen } from '../screens/RegisterBoardScreen';
+import { StickerScannerScreen } from '../screens/StickerScannerScreen';
 
+import { RootStackParamList } from '.';
 import {
   PrivateTabNavigator,
   PrivateTabParamList,
 } from './PrivateTabNavigator';
-import {
-  CompositeScreenProps,
-  NavigatorScreenParams,
-} from '@react-navigation/native';
-import { RootStackParamList } from '.';
-import { StickerScannerScreen } from '../screens/StickerScannerScreen';
 
 export type PrivateStackParamList = {
   PrivateTabNavigator: NavigatorScreenParams<PrivateTabParamList> | undefined;

@@ -2,14 +2,12 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, useTheme } from 'react-native-paper';
 
-import BoardsList from '../components/BoardsList';
+import { BoardsList } from '../components/BoardsList';
 import { View } from '../components/Themed';
 import { useBoards } from '../hooks/useBoards';
 import { PrivateTabScreenProps } from '../navigation/PrivateTabNavigator';
 
-export default function HomeScreen({
-  navigation,
-}: PrivateTabScreenProps<'Home'>) {
+export const HomeScreen = ({ navigation }: PrivateTabScreenProps<'Home'>) => {
   let colors = useTheme().colors;
 
   const { data } = useBoards();
@@ -26,7 +24,7 @@ export default function HomeScreen({
       />
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

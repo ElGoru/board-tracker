@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
 
-export const QRScanner = (props: { onScan: (data: string) => void }) => {
+export const QRScanner = ({ onScan }: { onScan: (data: string) => void }) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
 
@@ -16,7 +16,7 @@ export const QRScanner = (props: { onScan: (data: string) => void }) => {
   const handleBarCodeScanned = async ({ type, data }: BarCodeScannerResult) => {
     if (type != '256') return;
     setScanned(true);
-    props.onScan(data);
+    onScan(data);
   };
 
   if (hasPermission === null) {
