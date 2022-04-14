@@ -1,52 +1,50 @@
-import React, { useCallback, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { API, graphqlOperation } from 'aws-amplify';
-import { GraphQLResult } from '@aws-amplify/api';
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
 
 import { BoardForm } from '../components/BoardForm';
-import { createBoard, updateSticker } from '../graphql/mutations';
 import { View } from '../components/Themed';
-import {
-  CreateBoardInput,
-  CreateBoardMutation,
-  UpdateStickerInput,
-  UpdateStickerMutation,
-} from '../types/graphql';
+import { CreateBoardInput } from '../types/graphql';
 import { PrivateStackScreenProps } from '../navigation/PrivateStackNavigator';
+import { useCreateBoard } from '../hooks/useCreateBoard';
+import { useUpdateSticker } from '../hooks/useUpdateSticker';
+import { useSticker } from '../hooks/useSticker';
 
 export default function RegisterBoardScreen({
   route,
   navigation,
 }: PrivateStackScreenProps<'RegisterBoard'>) {
   const stickerId = route.params.stickerId;
+  const sticker = useSticker(stickerId);
+  const createBoard = useCreateBoard();
+  const updateSticker = useUpdateSticker();
 
-  const onSubmit = useCallback(
-    async (createBoardInput: CreateBoardInput) => {
-      try {
-        const createBoardResponse = await (API.graphql(
-          graphqlOperation(createBoard, { input: createBoardInput }),
-        ) as Promise<GraphQLResult<CreateBoardMutation>>);
-        const boardId = createBoardResponse.data?.createBoard?.id;
-        const updateStickerInput: UpdateStickerInput = {
-          id: stickerId,
-          stickerBoardId: boardId,
-        };
-        const response = await (API.graphql(
-          graphqlOperation(updateSticker, {
-            input: updateStickerInput,
-          }),
-        ) as Promise<GraphQLResult<UpdateStickerMutation>>);
-        navigation.navigate('PrivateTabNavigator', {
-          screen: 'Home',
-          params: { reload: true },
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    [stickerId],
-  );
+  const onSubmit = async (createBoardInput: CreateBoardInput) => {
+    try {
+      const board = await createBoard.mutateAsync(createBoardInput);
+      await updateSticker.mutateAsync({
+        id: stickerId,
+        stickerBoardId: board.id,
+      });
+    } catch (err) {
+      // TODO Rollback board creation if update sticker fails
+      console.log(err);
+    } finally {
+      navigation.navigate('PrivateTabNavigator');
+    }
+  };
 
+  if (sticker.isLoading)
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  if (sticker.isError)
+    return (
+      <View style={styles.container}>
+        <Text>Problems with the sticker</Text>
+      </View>
+    );
   return (
     <View style={styles.container}>
       <BoardForm onSubmit={onSubmit} />
