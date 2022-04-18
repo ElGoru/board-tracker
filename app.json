@@ -31,7 +31,6 @@
       "favicon": "./src/assets/images/favicon.png"
     },
     "description": "App to track kiteboards",
-    "githubUrl": "https://github.com/ElGoru/board-tracker",
-    "sdkVersion": "42.0.0"
+    "githubUrl": "https://github.com/ElGoru/board-tracker"
   }
 }
