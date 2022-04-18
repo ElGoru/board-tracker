@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
+import { Camera } from 'expo-camera';
 
 export const QRScanner = ({ onScan }: { onScan: (data: string) => void }) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
@@ -13,8 +14,7 @@ export const QRScanner = ({ onScan }: { onScan: (data: string) => void }) => {
     })();
   }, []);
 
-  const handleBarCodeScanned = async ({ type, data }: BarCodeScannerResult) => {
-    if (type != '256') return;
+  const handleBarCodeScanned = ({ type, data }: BarCodeScannerResult) => {
     setScanned(true);
     onScan(data);
   };
@@ -28,9 +28,12 @@ export const QRScanner = ({ onScan }: { onScan: (data: string) => void }) => {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
+      <Camera
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
+        barCodeScannerSettings={{
+          barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+        }}
       />
       {scanned && (
         <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />

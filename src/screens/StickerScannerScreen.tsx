@@ -37,14 +37,11 @@ export const StickerScannerScreen = ({
     return;
   }, [isSuccess]);
 
-  const onScan = React.useCallback(
-    data => {
-      const stickerId = Linking.parse(data).path?.replace('/', '');
-      if (!stickerId) return;
-      setStickerId(stickerId);
-    },
-    [setStickerId],
-  );
+  const onScan = (data: string) => {
+    const stickerId = Linking.parse(data).path?.replace('/', '');
+    if (!stickerId) return;
+    setStickerId(stickerId);
+  };
 
   return (
     <View style={styles.container}>

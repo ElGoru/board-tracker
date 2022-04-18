@@ -9,7 +9,7 @@ import { Sticker } from '../types/graphql';
 
 export const QRSticker = ({ sticker }: { sticker: Sticker }) => {
   const navigation = useNavigation();
-  const url = Linking.makeUrl(`/registerboard/${sticker.id}`);
+  const url = Linking.makeUrl(`/${sticker.id}`);
   return (
     <View style={styles.container}>
       <View style={styles.qr}>
