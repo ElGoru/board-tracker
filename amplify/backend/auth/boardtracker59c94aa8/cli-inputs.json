@@ -1,14 +1,16 @@
 {
-    "identityPoolName": "boardtracker7c184f23_identitypool_7c184f23",
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "boardtracker59c94aa8_identitypool_59c94aa8",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "boardt7c184f23",
-    "userPoolName": "boardtracker7c184f23_userpool_7c184f23",
+    "resourceNameTruncated": "boardt59c94aa8",
+    "userPoolName": "boardtracker59c94aa8_userpool_59c94aa8",
     "autoVerifiedAttributes": [
-        "email"
+      "email"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
-        "SMS Text Message"
+      "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
@@ -18,40 +20,29 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+      "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-        "email"
+      "email"
     ],
     "userpoolClientReadAttributes": [
-        "email"
+      "email"
     ],
-    "userpoolClientLambdaRole": "boardt7c184f23_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "boardt59c94aa8_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "7c184f23",
-    "resourceName": "boardtracker7c184f23",
+    "sharedId": "59c94aa8",
+    "resourceName": "boardtracker59c94aa8",
     "authSelections": "identityPoolAndUserPool",
-    "authRoleArn": {
-        "Fn::GetAtt": [
-            "AuthRole",
-            "Arn"
-        ]
-    },
-    "unauthRoleArn": {
-        "Fn::GetAtt": [
-            "UnauthRole",
-            "Arn"
-        ]
-    },
     "useDefault": "default",
     "usernameAttributes": [
-        "email"
+      "email"
     ],
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": []
+    "useEnabledMfas": true
+  }
 }

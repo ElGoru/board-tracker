@@ -12,16 +12,11 @@ export const createBoard = /* GraphQL */ `
       brand
       model
       description
-      createdAt
-      updatedAt
-      owner
       stickers {
         items {
           id
           size
           color
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -31,17 +26,17 @@ export const createBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          createdAt
+          updatedAt
+          boardStickersId
           owner
         }
         nextToken
       }
       locations {
         items {
-          id
           Latitude
           Longitude
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -51,10 +46,17 @@ export const createBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          id
+          createdAt
+          updatedAt
+          boardLocationsId
           owner
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -68,16 +70,11 @@ export const updateBoard = /* GraphQL */ `
       brand
       model
       description
-      createdAt
-      updatedAt
-      owner
       stickers {
         items {
           id
           size
           color
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -87,17 +84,17 @@ export const updateBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          createdAt
+          updatedAt
+          boardStickersId
           owner
         }
         nextToken
       }
       locations {
         items {
-          id
           Latitude
           Longitude
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -107,10 +104,17 @@ export const updateBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          id
+          createdAt
+          updatedAt
+          boardLocationsId
           owner
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -124,16 +128,11 @@ export const deleteBoard = /* GraphQL */ `
       brand
       model
       description
-      createdAt
-      updatedAt
-      owner
       stickers {
         items {
           id
           size
           color
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -143,17 +142,17 @@ export const deleteBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          createdAt
+          updatedAt
+          boardStickersId
           owner
         }
         nextToken
       }
       locations {
         items {
-          id
           Latitude
           Longitude
-          createdAt
-          updatedAt
           board {
             id
             brand
@@ -163,10 +162,17 @@ export const deleteBoard = /* GraphQL */ `
             updatedAt
             owner
           }
+          id
+          createdAt
+          updatedAt
+          boardLocationsId
           owner
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -179,16 +185,11 @@ export const createSticker = /* GraphQL */ `
       id
       size
       color
-      createdAt
-      updatedAt
       board {
         id
         brand
         model
         description
-        createdAt
-        updatedAt
-        owner
         stickers {
           items {
             id
@@ -196,22 +197,30 @@ export const createSticker = /* GraphQL */ `
             color
             createdAt
             updatedAt
+            boardStickersId
             owner
           }
           nextToken
         }
         locations {
           items {
-            id
             Latitude
             Longitude
+            id
             createdAt
             updatedAt
+            boardLocationsId
             owner
           }
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
+      createdAt
+      updatedAt
+      boardStickersId
       owner
     }
   }
@@ -225,16 +234,11 @@ export const updateSticker = /* GraphQL */ `
       id
       size
       color
-      createdAt
-      updatedAt
       board {
         id
         brand
         model
         description
-        createdAt
-        updatedAt
-        owner
         stickers {
           items {
             id
@@ -242,22 +246,30 @@ export const updateSticker = /* GraphQL */ `
             color
             createdAt
             updatedAt
+            boardStickersId
             owner
           }
           nextToken
         }
         locations {
           items {
-            id
             Latitude
             Longitude
+            id
             createdAt
             updatedAt
+            boardLocationsId
             owner
           }
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
+      createdAt
+      updatedAt
+      boardStickersId
       owner
     }
   }
@@ -271,16 +283,11 @@ export const deleteSticker = /* GraphQL */ `
       id
       size
       color
-      createdAt
-      updatedAt
       board {
         id
         brand
         model
         description
-        createdAt
-        updatedAt
-        owner
         stickers {
           items {
             id
@@ -288,114 +295,30 @@ export const deleteSticker = /* GraphQL */ `
             color
             createdAt
             updatedAt
+            boardStickersId
             owner
           }
           nextToken
         }
         locations {
           items {
-            id
             Latitude
             Longitude
+            id
             createdAt
             updatedAt
+            boardLocationsId
             owner
           }
           nextToken
         }
-      }
-      owner
-    }
-  }
-`;
-export const updateLocation = /* GraphQL */ `
-  mutation UpdateLocation(
-    $input: UpdateLocationInput!
-    $condition: ModelLocationConditionInput
-  ) {
-    updateLocation(input: $input, condition: $condition) {
-      id
-      Latitude
-      Longitude
-      createdAt
-      updatedAt
-      board {
-        id
-        brand
-        model
-        description
         createdAt
         updatedAt
         owner
-        stickers {
-          items {
-            id
-            size
-            color
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        locations {
-          items {
-            id
-            Latitude
-            Longitude
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
       }
-      owner
-    }
-  }
-`;
-export const deleteLocation = /* GraphQL */ `
-  mutation DeleteLocation(
-    $input: DeleteLocationInput!
-    $condition: ModelLocationConditionInput
-  ) {
-    deleteLocation(input: $input, condition: $condition) {
-      id
-      Latitude
-      Longitude
       createdAt
       updatedAt
-      board {
-        id
-        brand
-        model
-        description
-        createdAt
-        updatedAt
-        owner
-        stickers {
-          items {
-            id
-            size
-            color
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        locations {
-          items {
-            id
-            Latitude
-            Longitude
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
+      boardStickersId
       owner
     }
   }
@@ -406,19 +329,13 @@ export const createLocation = /* GraphQL */ `
     $condition: ModelLocationConditionInput
   ) {
     createLocation(input: $input, condition: $condition) {
-      id
       Latitude
       Longitude
-      createdAt
-      updatedAt
       board {
         id
         brand
         model
         description
-        createdAt
-        updatedAt
-        owner
         stickers {
           items {
             id
@@ -426,22 +343,129 @@ export const createLocation = /* GraphQL */ `
             color
             createdAt
             updatedAt
+            boardStickersId
             owner
           }
           nextToken
         }
         locations {
           items {
-            id
             Latitude
             Longitude
+            id
             createdAt
             updatedAt
+            boardLocationsId
             owner
           }
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
+      id
+      createdAt
+      updatedAt
+      boardLocationsId
+      owner
+    }
+  }
+`;
+export const updateLocation = /* GraphQL */ `
+  mutation UpdateLocation(
+    $input: UpdateLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    updateLocation(input: $input, condition: $condition) {
+      Latitude
+      Longitude
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            boardStickersId
+            owner
+          }
+          nextToken
+        }
+        locations {
+          items {
+            Latitude
+            Longitude
+            id
+            createdAt
+            updatedAt
+            boardLocationsId
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      id
+      createdAt
+      updatedAt
+      boardLocationsId
+      owner
+    }
+  }
+`;
+export const deleteLocation = /* GraphQL */ `
+  mutation DeleteLocation(
+    $input: DeleteLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    deleteLocation(input: $input, condition: $condition) {
+      Latitude
+      Longitude
+      board {
+        id
+        brand
+        model
+        description
+        stickers {
+          items {
+            id
+            size
+            color
+            createdAt
+            updatedAt
+            boardStickersId
+            owner
+          }
+          nextToken
+        }
+        locations {
+          items {
+            Latitude
+            Longitude
+            id
+            createdAt
+            updatedAt
+            boardLocationsId
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      id
+      createdAt
+      updatedAt
+      boardLocationsId
       owner
     }
   }

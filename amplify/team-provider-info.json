@@ -1,19 +1,19 @@
 {
-  "master": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-boardtracker-master-224430-authRole",
-      "UnauthRoleArn": "arn:aws:iam::231541701132:role/amplify-boardtracker-master-224430-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::231541701132:role/amplify-boardtracker-master-224430-authRole",
+      "AuthRoleName": "amplify-boardtracker-dev-100735-authRole",
+      "UnauthRoleArn": "arn:aws:iam::231541701132:role/amplify-boardtracker-dev-100735-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::231541701132:role/amplify-boardtracker-dev-100735-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-boardtracker-master-224430-deployment",
-      "UnauthRoleName": "amplify-boardtracker-master-224430-unauthRole",
-      "StackName": "amplify-boardtracker-master-224430",
-      "StackId": "arn:aws:cloudformation:us-east-1:231541701132:stack/amplify-boardtracker-master-224430/22c5df80-27c0-11ec-b0fe-0e39f212e4e1",
-      "AmplifyAppId": "d169swyzmgk2fb"
+      "DeploymentBucketName": "amplify-boardtracker-dev-100735-deployment",
+      "UnauthRoleName": "amplify-boardtracker-dev-100735-unauthRole",
+      "StackName": "amplify-boardtracker-dev-100735",
+      "StackId": "arn:aws:cloudformation:us-east-1:231541701132:stack/amplify-boardtracker-dev-100735/1f67b090-1a48-11ed-b161-120319b93ddd",
+      "AmplifyAppId": "d21yw29w6g7dbb"
     },
     "categories": {
       "auth": {
-        "boardtracker7c184f23": {}
+        "boardtracker59c94aa8": {}
       }
     }
   }

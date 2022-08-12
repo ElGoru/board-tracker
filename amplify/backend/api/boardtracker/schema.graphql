@@ -5,8 +5,8 @@ type Board
   brand: String!
   model: String!
   description: String
-  stickers: [Sticker!] @connection(name: "BoardStickers")
-  locations: [Location!] @connection(name: "BoardLocations")
+  stickers: [Sticker!] @hasMany
+  locations: [Location!] @hasMany
 }
 
 #Create admin group with create operations
@@ -22,7 +22,7 @@ type Sticker
   id: ID!
   size: StickerSize!
   color: String!
-  board: Board @connection(name: "BoardStickers")
+  board: Board @belongsTo
 }
 
 type Location
@@ -36,7 +36,7 @@ type Location
   ) {
   Latitude: Float!
   Longitude: Float!
-  board: Board @connection(name: "BoardLocations")
+  board: Board @belongsTo
 }
 
 enum StickerSize {

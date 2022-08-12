@@ -1,12 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
         "boardtracker": {
+            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
-        "boardtracker7c184f23": {
+        "boardtracker59c94aa8": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
